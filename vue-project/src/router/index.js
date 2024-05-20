@@ -10,8 +10,7 @@ import WorkOutView from '@/views/WorkOutView.vue'
 import RoutineBoardDetailView from '@/views/RoutineBoardDetailView.vue'
 import SelectFitness from '@/views/RoutineCreateViews/SelectFitness.vue'
 import DetailFitness from '@/views/RoutineCreateViews/DetailFitness.vue'
-
-
+import YoutubeView from '@/views/YoutubeView.vue'
 
 
 const router = createRouter({
@@ -42,7 +41,11 @@ const router = createRouter({
       name: 'create',
       component: RoutineCreateView,
     },
-
+    {
+      path: '/youtube',
+      name: 'youtube',
+      component: YoutubeView
+    },
     {
       path: '/fitness/:muscleId',
       component: SelectFitness,

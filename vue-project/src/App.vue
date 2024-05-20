@@ -18,6 +18,9 @@ const userStore = useUserStore();
       <li class="nav-item">
         <RouterLink class="nav-link" to="/main">Main</RouterLink>
       </li>
+      <li class="nav-item">
+        <RouterLink class="nav-link" to="/youtube">Youtube</RouterLink>
+      </li>
     </ul>
   </header>
 
