@@ -58,14 +58,7 @@ const router = createRouter({
     {
       path: '/board',
       name: 'board',
-      component: RoutineBoardView,
-      children : [
-        {
-          path: ':id',
-          name: 'detail',
-          component : RoutineBoardDetailView
-        },
-      ]
+      component: RoutineBoardView
     },
     {
       path: '/mypage',
@@ -76,6 +69,11 @@ const router = createRouter({
       path: '/workout',
       name: 'workout',
       component: WorkOutView
+    },
+    {
+      path: '/board/:id',
+      name: 'detail',
+      component : RoutineBoardDetailView
     },
 
   ]

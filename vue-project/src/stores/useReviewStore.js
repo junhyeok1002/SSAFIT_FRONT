@@ -30,10 +30,13 @@ export const useReviewStore = defineStore('reivew', () => {
   }
 
   //특정 리뷰 가져오기
+  const review = ref({});
   const getReview = function(id) {
     axios.get(REVIEW_URL+"/"+id)
     .then((res) => {
       console.log(res);
+      review.value = res.data;
+      console.log("해줬는데 왜 안돼?",review);
     })
   }
 
@@ -42,7 +45,8 @@ export const useReviewStore = defineStore('reivew', () => {
     getReviewList,
     getReview,
     page,
-    perPage
+    perPage,
+    review,
 
   }
 })

@@ -5,8 +5,10 @@
             검색기능을 넣을 영역
         </div>
         <div style="margin: 0 auto;" class="col-sm-9 bg-light p-3 border" v-for="review in currentPageBoardList">
-            <div style="text-align: left;">
-                {{ review.title }}
+            <div style="text-align: left;" class="title">
+                <a @click="detail(review.reviewId)">
+                    {{ review.title }}
+                </a>
             </div>
             <div v-if="review.content.length < 15" style="text-align: left;">
                 {{ review.content}}
@@ -51,7 +53,9 @@
 import { useReviewStore } from '@/stores/useReviewStore';
 import { useUserStore } from '@/stores/useUserStore';
 import { computed,onMounted,ref } from 'vue';
+import { useRouter,RouterLink } from 'vue-router'
 
+const router = useRouter();
 const reviewStore = useReviewStore();
 const userStore = useUserStore();
 const userInfo = userStore.user;
@@ -60,15 +64,15 @@ const userInfo = userStore.user;
 const currentPage = ref(1);
 const perPage = 7;
 
-const getPage = function(number) {
-    console.log("page...",number);
+const detail = function(id) {
+    console.log("게시글의 아이디 ",id);
+    router.push({name : 'detail', params : {id : id}})
 }
+
 onMounted(async ()=> {
     await reviewStore.getReviewList();
     // await nextTick();
     console.log("onmouted",reviewStore.reviewList.length,reviewStore.page.value);
-    await getPage(reviewStore.reviewList.length);
-
 })
 
 const currentPageBoardList = computed(() => {
@@ -117,7 +121,6 @@ const click = function(id) {
     }
 
     .title:hover {
-        color: orange;
         text-decoration-line: underline;
     } 
 
