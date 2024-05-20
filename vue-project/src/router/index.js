@@ -41,19 +41,17 @@ const router = createRouter({
       path: '/create',
       name: 'create',
       component: RoutineCreateView,
-      children : [
-        {
-          path: 'fitness/:muscleId',
-          component: SelectFitness,
-          name: 'SelectFitness',
-          children : [{
-            path: 'detail/:fitnessId',
-            component: DetailFitness,
-            name: 'DetailFitness',
-          }
-          ]
-        },
-      ]
+    },
+
+    {
+      path: '/fitness/:muscleId',
+      component: SelectFitness,
+      name: 'SelectFitness',
+    },
+    {
+      path: '/detail/:fitnessId',
+      component: DetailFitness,
+      name: 'DetailFitness',
     },
     {
       path: '/board',

@@ -1,24 +1,12 @@
 <template>
-    <div style="display: flex;">
-        <div>
-            <h4>근육 목록</h4>
-            <hr>
-            <table>
-                <tr v-for="muscle in store.MuscleList">
-                    <td>
-                        <RouterLink :to="{name:'SelectFitness',params: {muscleId : muscle.e_name}}" @click="refreshPage">
-                            {{ muscle.e_name }}({{ muscle.name }})
-                        </RouterLink>
-                    </td>
-                </tr>
-            </table>
-        </div>  
-        <RouterView></RouterView>
+    <div id="LeftTitle"><h4>근육 목록</h4><hr></div>
+    <div style="padding: 0.5rem;">
+        <MuscleComponent v-for="muscle in store.MuscleList" :key="muscle.e_name" :muscle="muscle" />
     </div>
-
 </template>
 
 <script setup>
+import MuscleComponent from './MuscleComponent.vue'; // 컴포넌트 임포트
 import { useMuscleStore } from '@/stores/routine';
 import { useRoute } from 'vue-router';
 import { onMounted } from 'vue';
@@ -29,11 +17,12 @@ onMounted(() => {
     store.getMuscleList();
 })
 
-const refreshPage = () => {
-    console.log("click!",route.params.muscleId);
-    store.getFitnessListAgonist(route.params.muscleId);
-    // location.reload();
-}
 </script>
 
-<style scoped></style>
+<style scoped>
+    #LeftTitle{
+		position: sticky; 
+		top: 0;
+		background-color: white;
+	}
+</style>

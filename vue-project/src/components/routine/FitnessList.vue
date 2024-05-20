@@ -1,38 +1,27 @@
 <template>
-    <div style="display: flex;">
-    <div>
-        <h4>운동 목록</h4>
-        <hr>
-        <table>
-            <tr v-for="fitness in store.FitnessListAgonist">
-                <td>
-                    <RouterLink :to="{name:'DetailFitness',params: {fitnessId : fitness.e_name}}" @click="refreshPage">
-                        {{ fitness.e_name }}({{ fitness.name }})
-                    </RouterLink>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <RouterView></RouterView>
+    <div id="LeftTitle"><h4>운동 목록</h4><hr></div>
+    <div style="padding: 0.5rem;">
+        <FitnessComponent v-for="fitness in store.FitnessListAgonist" :key="fitness.e_name" :fitness="fitness" />
     </div>
 </template>
 
 <script setup>
+import FitnessComponent from './FitnessComponent.vue';
 import { useMuscleStore } from '@/stores/routine';
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
- 
 const store = useMuscleStore()
-const route = useRoute();
 
 onMounted(() => {
-    store.getFitnessListAgonist(route.params.muscleId)
+    store.getFitnessListAgonist();
 })
-
-const refreshPage = () => {
-    console.log("click!!!!!!!!!!!!");
-    console.log("click!",route.params.fitnessId);
-    store.getOneFitness(route.params.fitnessId);
-}
 </script>
+
+<style scoped>
+    #LeftTitle{
+		position: sticky; 
+		top: 0;
+		background-color: white;
+	}
+</style>

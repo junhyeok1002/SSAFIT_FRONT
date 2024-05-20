@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script>
+<!-- <script>
 export default {
   mounted() {
     // 외부 스크립트 로드
@@ -42,5 +42,5 @@ export default {
     height: 400px;
     border: 1px solid #000;
   }
-  </style>
+  </style> -->
   

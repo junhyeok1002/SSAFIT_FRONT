@@ -17,16 +17,15 @@ export const useMuscleStore = defineStore('muscle', () => {
   }
 
   const FitnessListAgonist = ref([])
-  const getFitnessListAgonist = function (dynamicSegment) {
-    // const dynamicSegment = route.params.id;
+  const getFitnessListAgonist = function () {
+    const dynamicSegment = useRoute().params.muscleId;
     console.log("여기는 루틴 저장소의 아이디 가져오기",dynamicSegment);
     axios.get(`${REST_BOARD_API}/fitness/agonist/${dynamicSegment}`)
       .then((response) => {
-        console.log(response)
+        console.log(response.data);
         FitnessListAgonist.value = response.data;
-        // FitnessListAgonist.value = response.data;
         // console.log(dynamicSegment);
-        // console.log(FitnessListAgonist);
+        console.log(FitnessListAgonist.value);
     })
   }
 
@@ -42,13 +41,13 @@ export const useMuscleStore = defineStore('muscle', () => {
     })
   }
   const OneFitness = ref([])
-  const getOneFitness = function (dynamicSegment) {
+  const getOneFitness = function () {
       // const route = useRoute();
-      // const dynamicSegment = route.params.id;
+      const dynamicSegment = useRoute().params.fitnessId;
       console.log("여기는 루틴 저장소의 아이디 가져오기",dynamicSegment);
       axios.get(`${REST_BOARD_API}/fitness/${dynamicSegment}`)
         .then((response) => {
-          console.log("response: " + response)
+          console.log("response: " + response.data);
           OneFitness.value = response.data;
           // FitnessListAgonist.value = response.data;
           // console.log(dynamicSegment);
@@ -56,10 +55,22 @@ export const useMuscleStore = defineStore('muscle', () => {
       })
     }
 
+  const sendRoutine = async () => {
+      try {
+          const response = await axios.post(`${REST_BOARD_API}/routine`, allENames);
+          console.log(response.data); // 서버로부터 받은 응답 데이터
+      } catch (error) {
+          console.error(error); // 오류 처리
+      }
+  };
+ 
+
   return { 
            MuscleList, getMuscleList,
            FitnessListAgonist, getFitnessListAgonist,
            routine, getOneRoutine,
            OneFitness, getOneFitness,
+           sendRoutine,
+           
          }
 })
