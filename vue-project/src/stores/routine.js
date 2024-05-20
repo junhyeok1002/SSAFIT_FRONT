@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { useRoute } from 'vue-router';
 import axios from 'axios'
 
 
@@ -42,19 +43,18 @@ export const useMuscleStore = defineStore('muscle', () => {
   }
   const OneFitness = ref([])
   const getOneFitness = function (dynamicSegment) {
-      const route = useRoute();
+      // const route = useRoute();
       // const dynamicSegment = route.params.id;
       console.log("여기는 루틴 저장소의 아이디 가져오기",dynamicSegment);
       axios.get(`${REST_BOARD_API}/fitness/${dynamicSegment}`)
         .then((response) => {
-          console.log(response)
+          console.log("response: " + response)
           OneFitness.value = response.data;
           // FitnessListAgonist.value = response.data;
           // console.log(dynamicSegment);
           // console.log(FitnessListAgonist);
       })
     }
-
 
   return { 
            MuscleList, getMuscleList,

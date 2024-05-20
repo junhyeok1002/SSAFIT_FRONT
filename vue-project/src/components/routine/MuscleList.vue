@@ -22,7 +22,6 @@
 import { useMuscleStore } from '@/stores/routine';
 import { useRoute } from 'vue-router';
 import { onMounted } from 'vue';
-import FitnessList from '@/components/routine/FitnessList.vue'
 
 const route = useRoute();
 const store = useMuscleStore()
