@@ -1,3 +1,5 @@
+
+
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
@@ -7,11 +9,12 @@ import MyPage from '@/views/MyPage.vue'
 import RoutineBoardView from '@/views/RoutineBoardView.vue'
 import RoutineCreateView from '@/views/RoutineCreateView.vue'
 import WorkOutView from '@/views/WorkOutView.vue'
-import RoutineBoardDetailView from '@/views/BoardViews/RoutineBoardDetailView.vue'
-import RoutineBoardUpdateView from '@/views/BoardViews/RoutineBoardUpdateView.vue'
+import RoutineBoardDetailView from '@/views/RoutineBoardDetailView.vue'
 import SelectFitness from '@/views/RoutineCreateViews/SelectFitness.vue'
 import DetailFitness from '@/views/RoutineCreateViews/DetailFitness.vue'
 import YoutubeView from '@/views/YoutubeView.vue'
+import ChatgptComponent from '@/components/chatgpt/ChatgptComponent.vue'
+import RoutineDetailView from '@/views/RoutineDetailView.vue'
 
 
 const router = createRouter({
@@ -56,6 +59,27 @@ const router = createRouter({
       path: '/detail/:fitnessId',
       component: DetailFitness,
       name: 'DetailFitness',
+      redirect: to => {
+        // 현재 요청된 경로(to.path) 뒤에 '/youtube'를 붙여서 redirect
+        return to.path + '/youtube';
+      },
+      children: [
+        {
+          path: 'youtube',
+          name: 'youtube',
+          component: YoutubeView,
+        },
+        {
+          path: 'chatgpt',
+          component: ChatgptComponent,
+          name: 'chatgpt',
+        },
+      ]
+    },
+    {
+      path: '/chatgpt',
+      component: ChatgptComponent,
+      name: 'ChatgptComponent',
     },
     {
       path: '/board',
@@ -75,7 +99,12 @@ const router = createRouter({
     {
       path: '/board/:id',
       name: 'detail',
-      component : RoutineBoardDetailView,
+      component : RoutineBoardDetailView
+    },
+    {
+      path: '/routine/:routineId',
+      component: RoutineDetailView,
+      name: 'RoutineDetailView',
     },
     {
       path: '/update/:id',
@@ -87,3 +116,4 @@ const router = createRouter({
 })
 
 export default router
+
