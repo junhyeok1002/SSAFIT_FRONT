@@ -3,16 +3,32 @@
     <div class="fitness-box">
       <!-- <img src="`@/assets/img/muscle/Dumbbell_Curl.png`" alt="Dumbbell_Curl" style="width: 100%; height: 100%;"> -->
 
-      <RouterLink :to="{name:'DetailFitness',params: {fitnessId : fitness.e_name}}">
+      <RouterLink :to="{name:'DetailFitness',params: {fitnessId : fitness.e_name}}" style="color: black; text-decoration: none; ">
          <p>{{ fitness.e_name }}({{ fitness.name }})</p>
+         <div class="muscles">
+          <div v-if="fitness.muscle.agonist && fitness.muscle.agonist.length">
+              <strong>주 근육:</strong> {{ fitness.muscle.agonist.join(', ') }}
+          </div>
+          <div v-else>
+              <strong>주 근육:</strong> 없음
+          </div>
+          <div v-if="fitness.muscle.synergists_first && fitness.muscle.synergists_first.length">
+              <strong>일차 보조 근육:</strong> {{ fitness.muscle.synergists_first.join(', ') }}
+          </div>
+          <div v-else>
+              <strong>일차 보조 근육:</strong> 없음
+          </div>
+          <div v-if="fitness.muscle.synergists_second && fitness.muscle.synergists_second.length">
+              <strong>이차 보조 근육:</strong> {{ fitness.muscle.synergists_second.join(', ') }}
+          </div>
+          <div v-else>
+              <strong>이차 보조 근육:</strong> 없음
+          </div>
+
+
+        </div>
       </RouterLink>
-      <div class="muscles">
-        <ul>
-          <li><strong>주 근육:</strong> {{ fitness.muscle.agonist.join(', ') }}</li>
-          <li><strong>일차 보조 근육:</strong> {{ fitness.muscle.synergists_first.join(', ') }}</li>
-          <li><strong>이차 보조 근육:</strong> {{ fitness.muscle.synergists_second.join(', ') }}</li>
-        </ul>
-      </div>
+      
     </div>
   </template>
 

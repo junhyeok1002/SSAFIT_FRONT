@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h4>검색결과</h4>
+
+    <hr v-if="store.videos.length > 0">
     <ul>
       <YoutubeVideoListItem
         v-for="video in store.videos"

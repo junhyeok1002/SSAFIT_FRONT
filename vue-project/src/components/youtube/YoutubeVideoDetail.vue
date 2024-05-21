@@ -1,8 +1,8 @@
 <template>
+  <hr v-if="store.selectedVideo">
   <div v-if="store.selectedVideo">
-    <h4>영상상세보기</h4>
     <iframe
-      width="560"
+      width="90%"
       height="315"
       :src="videoURL"
       title="YouTube video player"

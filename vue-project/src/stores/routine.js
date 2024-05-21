@@ -29,6 +29,31 @@ export const useMuscleStore = defineStore('muscle', () => {
     })
   }
 
+  const FitnessListSynergy1 = ref([])
+  const getFitnessListSynergy1 = function () {
+    const dynamicSegment = useRoute().params.muscleId;
+    console.log("여기는 루틴 저장소의 아이디 가져오기",dynamicSegment);
+    axios.get(`${REST_BOARD_API}/fitness/synergyfirst/${dynamicSegment}`)
+      .then((response) => {
+        console.log(response.data);
+        FitnessListSynergy1.value = response.data;
+        // console.log(dynamicSegment);
+        console.log(FitnessListSynergy1.value);
+    })
+  }
+
+  const FitnessListSynergy2 = ref([])
+  const getFitnessListSynergy2 = function () {
+    const dynamicSegment = useRoute().params.muscleId;
+    console.log("여기는 루틴 저장소의 아이디 가져오기",dynamicSegment);
+    axios.get(`${REST_BOARD_API}/fitness/synergysecond/${dynamicSegment}`)
+      .then((response) => {
+        console.log(response.data);
+        FitnessListSynergy2.value = response.data;
+        console.log(FitnessListSynergy2.value);
+    })
+  }
+
 
   //루틴 아이디로 루틴정보 가져오기
   const routine = ref([]);
@@ -71,6 +96,8 @@ export const useMuscleStore = defineStore('muscle', () => {
            routine, getOneRoutine,
            OneFitness, getOneFitness,
            sendRoutine,
+           FitnessListSynergy1, getFitnessListSynergy1,
+           FitnessListSynergy2, getFitnessListSynergy2,
            
          }
 })

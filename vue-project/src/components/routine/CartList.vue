@@ -5,7 +5,7 @@
         <div id="Header1">장바구니</div>
         <div id="CartBody">
             <!-- 장바구니 아이템을 동적으로 추가하는 부분 -->
-            <div v-for="item in cartItems">{{ item }}</div>
+            <FitnessCartComponent v-for="fitness in cartItems" :key="fitness.e_name" :fitness="fitness" />
         </div>
         </div>
     
@@ -19,24 +19,27 @@
     </template>
     
     <script setup>
+    import FitnessCartComponent from './FitnessCartComponent.vue';
     import { ref, onMounted } from 'vue';
     import axios from 'axios';
     
     const cartItems = ref([]); // 장바구니 아이템을 저장할 배열
-    
+
     // 로컬 스토리지에서 데이터를 가져와서 cartItems에 할당하는 함수
     const loadCartItems = () => {
-
         const localStorageKeys = Object.keys(localStorage);
         const allData = {};
         for (let key of localStorageKeys) {
-            allData[key] = localStorage.getItem(key);
+            allData[key] = JSON.parse(localStorage.getItem(key));
         }
 
         if (allData) {
-            cartItems.value = allData;
+            cartItems.value = Object.values(allData);
         }
+        
+        console.log(cartItems.value);
     };
+
     
     // 컴포넌트가 마운트되면 로컬 스토리지에서 데이터를 가져와서 cartItems에 할당
     onMounted(() => {
@@ -56,12 +59,6 @@
         console.log(allENames);
 
         const ret = sendRoutine(allENames);
-        console.log(ret);
-
-        // 로컬 스토리지 비우기
-        localStorage.clear();
-
-        // location.reload();
     };
 
     const sendRoutine = async (allENames) => {
@@ -71,6 +68,12 @@
         })
         .then(id => {
             console.log(id); // 숫자 출력
+
+            // 로컬 스토리지 비우고 새로 고침
+            localStorage.clear();
+            location.reload();
+            window.location.href = `/routine/${id}`;
+
         })
         .catch(error => {
             console.error(error); // 오류 처리
@@ -92,11 +95,13 @@
         text-align: center;
         align-items: center;
         padding: 10px;
+        color: #4556a0;
     }
 
     #CartBody{
-        max-height: 75vh;
+        max-height: 76.95vh;
         overflow-y: auto;
+        height: 76.95vh;
     }
 
     .container {
@@ -108,9 +113,11 @@
         position: relative; /* 상위 컴포넌트를 기준으로 절대 위치 설정 */
         bottom: 0; /* 하단에 고정 */
         width: 100%; /* 너비를 상위 컴포넌트에 맞춤 */
-        background-color: lightgray; /* 배경색 추가 (옵션) */
+        background-color: #4556a0; /* 배경색 추가 (옵션) */
         text-align: center; /* 텍스트 중앙 정렬 (옵션) */
         padding: 10px; /* 패딩 추가 (옵션) */
+        font-weight: bold;
+        color: white;
     }
 
 
