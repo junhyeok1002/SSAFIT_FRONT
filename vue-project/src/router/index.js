@@ -104,6 +104,11 @@ const router = createRouter({
       component: RoutineDetailView,
       name: 'RoutineDetailView',
     },
+    {
+      path: '/update/:id',
+      name: 'update',
+      component: RoutineBoardUpdateView
+    }
 
   ]
 })
