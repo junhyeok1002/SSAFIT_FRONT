@@ -98,6 +98,43 @@ export const useMuscleStore = defineStore('muscle', () => {
     })
   }
 
+  const RoutineTotal = ref([]);
+  const RoutineActivation = ref([]);
+  const getRoutineActivation = function () {
+    const dynamicSegment = useRoute().params.routineId;
+    axios.get(`${REST_BOARD_API}/fitness/routine/${dynamicSegment}`)
+      .then((response) => {
+        const data = response.data.activation;
+        for (const key in data) {
+          if (data.hasOwnProperty(key)) {
+            const value = data[key];
+            const keyValueObject = { key: key, value: value }; // 키와 값을 객체에 담음
+            if (key === 'TOTAL') {
+              RoutineTotal.value.push(keyValueObject);
+            } else {
+              RoutineActivation.value.push(keyValueObject);
+            }
+          }
+        }
+
+        // RoutineTotal을 value를 기준으로 내림차순으로 정렬
+        RoutineTotal.value.sort((a, b) => b.value - a.value);
+
+        // RoutineActivation을 value를 기준으로 내림차순으로 정렬
+        RoutineActivation.value.sort((a, b) => b.value - a.value);
+      });
+  };
+  
+
+  const RoutineFitnessDetail = ref([])
+  const getRoutineFitnessDetail = function () {
+    const dynamicSegment = useRoute().params.routineId;
+    axios.get(`${REST_BOARD_API}/fitness/routine/detail/${dynamicSegment}`)
+      .then((response) => {
+        RoutineFitnessDetail.value = response.data;
+    })
+  }
+
   return { 
            MuscleList, getMuscleList,
            FitnessListAgonist, getFitnessListAgonist,
@@ -107,6 +144,7 @@ export const useMuscleStore = defineStore('muscle', () => {
            FitnessListSynergy1, getFitnessListSynergy1,
            FitnessListSynergy2, getFitnessListSynergy2,
            RoutineDetail, getRoutineDetail,
-           
+           RoutineFitnessDetail, getRoutineFitnessDetail,
+           RoutineTotal, RoutineActivation, getRoutineActivation,
          }
 })

@@ -13,16 +13,16 @@
                 <div class="button" @click="startExercise">운동하기</div>
             </div>
         </div>
-        <br/>
+        <br>
 
-        <div style="display: flex;">
-        <div style="width: 50%;">
-            <RoutineAnalysis />
-        </div>
-        <div style="width: 50%;">
-            <RoutineChart />
-        </div>
-    </div>      
+        <div style="display: flex; height: 80vh; ">
+            <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+                <RoutineAnalysis />
+            </div>
+            <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+                <RoutineChart />
+            </div>
+        </div>      
 
     </div>
 </template>

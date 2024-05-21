@@ -103,6 +103,16 @@
         color: #4556a0;
     }
 
+    #LeftTitle {
+        font-size: 1.5rem;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        font-weight: bold;
+        color: #4556a0;
+    }
+
+
     #CartBody{
         max-height: 76.95vh;
         overflow-y: auto;

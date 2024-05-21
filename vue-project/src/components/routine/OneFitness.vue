@@ -1,10 +1,10 @@
 <template>
     <div>
         <div id="LeftTitle">
-            <div id="LeftTitle">
-                <h4>운동 상세</h4>
-                <hr>
-            </div>
+
+            <h4>운동 상세</h4>
+            <hr>
+         
         </div>
 
         <div id="detail" style="display: flex; padding :0px;">
