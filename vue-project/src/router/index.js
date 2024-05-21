@@ -11,6 +11,7 @@ import RoutineBoardDetailView from '@/views/RoutineBoardDetailView.vue'
 import SelectFitness from '@/views/RoutineCreateViews/SelectFitness.vue'
 import DetailFitness from '@/views/RoutineCreateViews/DetailFitness.vue'
 import YoutubeView from '@/views/YoutubeView.vue'
+import ChatgptComponent from '@/components/chatgpt/ChatgptComponent.vue'
 
 
 const router = createRouter({
@@ -55,6 +56,23 @@ const router = createRouter({
       path: '/detail/:fitnessId',
       component: DetailFitness,
       name: 'DetailFitness',
+      children: [
+        {
+          path: 'youtube',
+          name: 'youtube',
+          component: YoutubeView
+        },
+        {
+          path: 'chatgpt',
+          component: ChatgptComponent,
+          name: 'chatgpt',
+        },
+      ]
+    },
+    {
+      path: '/chatgpt',
+      component: ChatgptComponent,
+      name: 'ChatgptComponent',
     },
     {
       path: '/board',

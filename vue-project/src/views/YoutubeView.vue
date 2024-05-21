@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <h2>YoutubeView</h2>
+  <div >
+    <img src="@/assets/img/Youtube.png" alt="Youtube" style="width: 10rem; margin-top: 2rem; margin-bottom: 2rem;"  />
+    <br/><br/>
     <YoutubeVideoSearch/>
-    <hr>
+    
     <YoutubeVideoDetail/>
-    <hr>
+
     <YoutubeVideoList/>
   </div>
 </template>
@@ -17,5 +18,6 @@ import YoutubeVideoDetail from '@/components/youtube/YoutubeVideoDetail.vue'
 
 
 </script>
+
 
 <style scoped></style>

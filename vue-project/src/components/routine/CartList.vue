@@ -6,6 +6,7 @@
         <div id="CartBody">
             <!-- 장바구니 아이템을 동적으로 추가하는 부분 -->
             <div v-for="item in cartItems">{{ item }}</div>
+            
         </div>
         </div>
     
@@ -95,8 +96,9 @@
     }
 
     #CartBody{
-        max-height: 75vh;
+        max-height: 76.95vh;
         overflow-y: auto;
+        height: 76.95vh;
     }
 
     .container {

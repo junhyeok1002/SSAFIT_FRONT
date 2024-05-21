@@ -1,12 +1,13 @@
 <template>
     <div class="muscle-box">
-      <div class="muscle-info">
-        <RouterLink :to="{name:'SelectFitness',params: {muscleId : muscle.e_name}}" >
-            <p>{{ muscle.name }}({{ muscle.e_name }})</p>
-            <!-- <p> 부피: {{ muscle.volume }}</p> -->
+        <RouterLink :to="{name:'SelectFitness',params: {muscleId : muscle.e_name}}"  style="color: black; text-decoration: none; ">
+            <div class="muscle-info">
+              <div class="p">{{ muscle.name }}({{ muscle.e_name }})</div>
+              <!-- <p> 부피: {{ muscle.volume }}</p> -->
+            </div>
         </RouterLink>
       </div>
-    </div>
+ 
   </template>
 
   <script>
@@ -34,7 +35,7 @@
 
   }
   
-  .muscle-info p {
+  .muscle-info .p {
     margin: 5px 0;
   }
   </style>
