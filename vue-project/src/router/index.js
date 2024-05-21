@@ -16,6 +16,7 @@ import YoutubeView from '@/views/YoutubeView.vue'
 import ChatgptComponent from '@/components/chatgpt/ChatgptComponent.vue'
 import RoutineDetailView from '@/views/RoutineDetailView.vue'
 import RoutineBoardUpdateView from '@/views/BoardViews/RoutineBoardUpdateView.vue'
+import UserUpdateView from '@/views/UserUpdateView.vue'
 
 
 const router = createRouter({
@@ -111,6 +112,11 @@ const router = createRouter({
       path: '/update/:id',
       name: 'update',
       component: RoutineBoardUpdateView
+    },
+    {
+      path: '/userUpdate',
+      name: 'userUpdate',
+      component: UserUpdateView
     }
 
   ]
