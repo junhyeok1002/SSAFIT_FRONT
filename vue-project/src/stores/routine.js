@@ -88,7 +88,15 @@ export const useMuscleStore = defineStore('muscle', () => {
           console.error(error); // 오류 처리
       }
   };
- 
+  
+  const RoutineDetail = ref([])
+  const getRoutineDetail = function () {
+    const dynamicSegment = useRoute().params.routineId;
+    axios.get(`${REST_BOARD_API}/fitness/routine/${dynamicSegment}`)
+      .then((response) => {
+        RoutineDetail.value = response.data;
+    })
+  }
 
   return { 
            MuscleList, getMuscleList,
@@ -98,6 +106,7 @@ export const useMuscleStore = defineStore('muscle', () => {
            sendRoutine,
            FitnessListSynergy1, getFitnessListSynergy1,
            FitnessListSynergy2, getFitnessListSynergy2,
+           RoutineDetail, getRoutineDetail,
            
          }
 })

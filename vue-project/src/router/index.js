@@ -94,7 +94,7 @@ const router = createRouter({
       component: MyPage
     },
     {
-      path: '/workout',
+      path: '/workout/:routineId',
       name: 'workout',
       component: WorkOutView
     },

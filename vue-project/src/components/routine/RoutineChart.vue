@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>운동하기</h1>
+        <h1>루틴차트</h1>
         {{ store.RoutineDetail }}
     </div>
 </template>

@@ -47,6 +47,11 @@
     });
 
     const generateRoutine = () => {
+        if (localStorage.length === 0) {
+            console.log("로컬 스토리지가 비어 있습니다.");
+            return; // 로컬 스토리지가 비어 있으면 함수 실행 중단
+        }
+
         // 로컬 스토리지에서 모든 아이템 가져오기
         const storedItems = Object.keys(localStorage).map(key => {
             return JSON.parse(localStorage.getItem(key));
