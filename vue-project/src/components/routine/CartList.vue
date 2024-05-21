@@ -110,9 +110,10 @@
         position: relative; /* 상위 컴포넌트를 기준으로 절대 위치 설정 */
         bottom: 0; /* 하단에 고정 */
         width: 100%; /* 너비를 상위 컴포넌트에 맞춤 */
-        background-color: lightgray; /* 배경색 추가 (옵션) */
+        background-color: #b3b6b4; /* 배경색 추가 (옵션) */
         text-align: center; /* 텍스트 중앙 정렬 (옵션) */
         padding: 10px; /* 패딩 추가 (옵션) */
+        font-weight: bold;
     }
 
 

@@ -56,11 +56,15 @@ const router = createRouter({
       path: '/detail/:fitnessId',
       component: DetailFitness,
       name: 'DetailFitness',
+      redirect: to => {
+        // 현재 요청된 경로(to.path) 뒤에 '/youtube'를 붙여서 redirect
+        return to.path + '/youtube';
+      },
       children: [
         {
           path: 'youtube',
           name: 'youtube',
-          component: YoutubeView
+          component: YoutubeView,
         },
         {
           path: 'chatgpt',
