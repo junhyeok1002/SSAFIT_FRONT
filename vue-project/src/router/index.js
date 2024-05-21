@@ -12,6 +12,7 @@ import SelectFitness from '@/views/RoutineCreateViews/SelectFitness.vue'
 import DetailFitness from '@/views/RoutineCreateViews/DetailFitness.vue'
 import YoutubeView from '@/views/YoutubeView.vue'
 import ChatgptComponent from '@/components/chatgpt/ChatgptComponent.vue'
+import RoutineDetailView from '@/views/RoutineDetailView.vue'
 
 
 const router = createRouter({
@@ -97,6 +98,11 @@ const router = createRouter({
       path: '/board/:id',
       name: 'detail',
       component : RoutineBoardDetailView
+    },
+    {
+      path: '/routine/:routineId',
+      component: RoutineDetailView,
+      name: 'RoutineDetailView',
     },
 
   ]
