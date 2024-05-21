@@ -9,12 +9,13 @@ import MyPage from '@/views/MyPage.vue'
 import RoutineBoardView from '@/views/RoutineBoardView.vue'
 import RoutineCreateView from '@/views/RoutineCreateView.vue'
 import WorkOutView from '@/views/WorkOutView.vue'
-import RoutineBoardDetailView from '@/views/RoutineBoardDetailView.vue'
+import RoutineBoardDetailView from '@/views/BoardViews/RoutineBoardDetailView.vue'
 import SelectFitness from '@/views/RoutineCreateViews/SelectFitness.vue'
 import DetailFitness from '@/views/RoutineCreateViews/DetailFitness.vue'
 import YoutubeView from '@/views/YoutubeView.vue'
 import ChatgptComponent from '@/components/chatgpt/ChatgptComponent.vue'
 import RoutineDetailView from '@/views/RoutineDetailView.vue'
+import RoutineBoardUpdateView from '@/views/BoardViews/RoutineBoardUpdateView.vue'
 
 
 const router = createRouter({

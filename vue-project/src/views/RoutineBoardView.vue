@@ -2,11 +2,9 @@
     <div class="board">
         <h1>루틴 게시판</h1>
         <div>
-            검색기능을 넣을 영역 | 
             <div class="box">
-                <div>  제목 : {{ selected.reviewTitle }} | 작성자 : {{ selected.reviewAuthorName }}  | Selected: {{ selected.reviewDirection }} | routine {{ selected.reviewRoutineId }}</div>
-                <input v-model="selected.reviewTitle">
-                <input v-model="selected.reviewAuthorName">
+                <input v-model="selected.reviewTitle" placeholder="제목">
+                <input v-model="selected.reviewAuthorName" placeholder="작성자명">
                 <select v-model="selected.reviewRoutineId">
                     <option disabled value="">루틴</option>
                     <option v-for="i in 3">{{ i }}</option>
