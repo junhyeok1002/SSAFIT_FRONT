@@ -4,9 +4,15 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 
 const USER_URL = "http://localhost:8080"
+
 export const useUserStore = defineStore('user', () => {
   const user = ref(null);
   const router = useRouter();
+  if (sessionStorage.getItem("login")) {
+    console.log(JSON.parse(sessionStorage.getItem("login")))
+    user.value=JSON.parse(sessionStorage.getItem("login"));
+    // user.value = JSON.parse(sessionStorage.getItem("login"));
+  }
 
   // 로그인
   const login = function(info) {
@@ -14,11 +20,13 @@ export const useUserStore = defineStore('user', () => {
     axios.post(`${USER_URL}/login`,info)
     .then((res) => {
       window.alert("로그인 완료!!");
-      console.log("로그인 완료!")
       console.log(res);
       user.value = res.data;
       console.log("유저 정보 : ",user.value);
       // 이제 세션영역에 유저정보가 있음
+      console.log("JSON으로 바꿔줘",JSON.stringify(res.data));
+      sessionStorage.setItem("login",JSON.stringify(res.data));
+      console.log("잘 변환됐니?",JSON.parse(sessionStorage.getItem("login")))
       router.replace({name:"main"});
     })
     .catch((err)=>{
@@ -31,6 +39,7 @@ export const useUserStore = defineStore('user', () => {
     axios.post(`${USER_URL}/logout`)
     .then(() => {
       user.value = null;
+      sessionStorage.removeItem("login");
       console.log("로그아웃 완료")
       router.replace({name : "login"})
     })

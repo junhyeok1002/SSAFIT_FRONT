@@ -7,7 +7,8 @@ import MyPage from '@/views/MyPage.vue'
 import RoutineBoardView from '@/views/RoutineBoardView.vue'
 import RoutineCreateView from '@/views/RoutineCreateView.vue'
 import WorkOutView from '@/views/WorkOutView.vue'
-import RoutineBoardDetailView from '@/views/RoutineBoardDetailView.vue'
+import RoutineBoardDetailView from '@/views/BoardViews/RoutineBoardDetailView.vue'
+import RoutineBoardUpdateView from '@/views/BoardViews/RoutineBoardUpdateView.vue'
 import SelectFitness from '@/views/RoutineCreateViews/SelectFitness.vue'
 import DetailFitness from '@/views/RoutineCreateViews/DetailFitness.vue'
 import YoutubeView from '@/views/YoutubeView.vue'
@@ -74,8 +75,13 @@ const router = createRouter({
     {
       path: '/board/:id',
       name: 'detail',
-      component : RoutineBoardDetailView
+      component : RoutineBoardDetailView,
     },
+    {
+      path: '/update/:id',
+      name: 'update',
+      component: RoutineBoardUpdateView
+    }
 
   ]
 })

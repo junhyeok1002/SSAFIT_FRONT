@@ -1,3 +1,4 @@
+
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { useUserStore } from '@/stores/useUserStore';
@@ -12,14 +13,8 @@ const userStore = useUserStore();
       <li class="nav-item">
         <RouterLink class="nav-link" to="/">Home</RouterLink> 
       </li>
-      <li class="nav-item" v-if="userStore.user === null">
-        <RouterLink class="nav-link" to="/login">Login</RouterLink> 
-      </li>
       <li class="nav-item">
         <RouterLink class="nav-link" to="/main">Main</RouterLink>
-      </li>
-      <li class="nav-item">
-        <RouterLink class="nav-link" to="/youtube">Youtube</RouterLink>
       </li>
     </ul>
   </header>
@@ -33,6 +28,10 @@ const userStore = useUserStore();
 .nav-link:active {
   color: gold;
 }
+.nav-link{
+  color: #9dbfd3;
+}
 
 
 </style>
+
