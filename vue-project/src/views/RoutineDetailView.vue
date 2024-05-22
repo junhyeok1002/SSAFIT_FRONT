@@ -30,19 +30,22 @@
 import RoutineAnalysis from '@/components/routine/RoutineAnalysis.vue'
 import RoutineChart from '@/components/routine/RoutineChart.vue'
 import { useMuscleStore } from '@/stores/routine';
+import { useUserStore } from '@/stores/useUserStore';
 import { useRouter } from 'vue-router'; // 수정된 부분: useRouter를 import합니다.
 import { onMounted } from 'vue';
 
 // 수정된 부분: useRouter를 사용하여 router 객체를 가져옵니다.
 const router = useRouter();
 const store = useMuscleStore()
+const userStore = useUserStore()
+
 onMounted(() => {
     store.getRoutineDetail();
 })
 
 const addToFavorites = function() {
     // router.push({name:'fav'});
-    alert("즐겨찾기 해라!!!!!!!코드 구현하는 너말이야!!");
+    userStore.registFavorite();
 }
 
 const goToHome = function() {

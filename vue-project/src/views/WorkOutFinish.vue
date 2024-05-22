@@ -65,9 +65,7 @@ onMounted(() => {
 const router = useRouter();
 
 const addToFavorites = function() {
-    // router.push({name:'fav'});
     userStore.registFavorite();
-    alert("즐겨찾기 해라!!!!!!!코드 구현하는 너말이야!!");
 }
 
 const goToHome = function() {
@@ -75,9 +73,8 @@ const goToHome = function() {
 }
 
 const goToReview = function() {
-  alert("후기작성 구현 해라!!!!!!!코드 구현하는 너말이야!!");
+  router.push({name:'createReview',params:{routineId:route.params.routineId}});
 }
-
 
 </script>
 
