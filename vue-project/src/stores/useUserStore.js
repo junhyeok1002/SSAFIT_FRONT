@@ -37,7 +37,6 @@ export const useUserStore = defineStore('user', () => {
     console.log(info)
     await axios.post(`${USER_URL}/login`,info)
     .then(async (res) => {
-      window.alert("로그인 완료!!");
       console.log(res);
       user.value = res.data;
       //이 부분에서 즐겨찾기와 완료한 운동들 전부 명칭으로 변환
@@ -139,8 +138,10 @@ export const useUserStore = defineStore('user', () => {
 
     axios.post(`${USER_URL}/favorite/${routindId}`)
     .then((res)=> {
+      login({id:user.value.id,password:user.value.password})
       alert("즐겨찾기 등록이 완료 되었습니다!");
     })
+
 
     
   }
