@@ -1,5 +1,3 @@
-
-
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
@@ -19,7 +17,6 @@ import RoutineBoardUpdateView from '@/views/BoardViews/RoutineBoardUpdateView.vu
 import UserUpdateView from '@/views/UserUpdateView.vue'
 import WorkOutViewSelect from '@/views/WorkOutViewSelect.vue'
 import WorkOutFinish from '@/views/WorkOutFinish.vue';
-import RouteBoardCreateView from '@/views/BoardViews/RouteBoardCreateView.vue'
 
 
 const router = createRouter({
@@ -135,7 +132,7 @@ const router = createRouter({
       path: '/createReview/:routineId',
       name: 'createReview',
       component: RouteBoardCreateView
-    }
+    },
 
   ]
 })
