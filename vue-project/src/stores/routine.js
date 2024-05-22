@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios'
 
 
@@ -153,14 +153,21 @@ export const useMuscleStore = defineStore('muscle', () => {
         });
     }
   };
-
-  const getWorkoutSelectNext = function () {
-    const rId = useRoute().params.routineId;
-    const fId = useRoute().params.fitnessId;
+  
+  const finishResult = ref([]);
+  const getWorkoutSelectNext = function (rId, fId) {
     axios.get(`${REST_BOARD_API}/fitness/workout/${rId}/${fId}`)
       .then((response) => {
-        WorkoutSelect.value = response.data.selection;
-        WorkoutRemain.value = response.data.remain;
+        if (response.data && response.data.selection && response.data.remain) {
+            WorkoutSelect.value = response.data.selection;
+            WorkoutRemain.value = response.data.remain;
+        }else{
+            finishResult.value = response.data;
+            console.log(finishResult.value);
+            localStorage.setItem('finishResult', JSON.stringify(response.data));
+
+            window.location.href = `/workout/finish/${rId}`;
+        }
     })
   }
 

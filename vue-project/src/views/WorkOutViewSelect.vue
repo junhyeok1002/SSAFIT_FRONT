@@ -65,12 +65,24 @@ onMounted(() => {
 })
 
 const nextWorkout = () => {
-    console.log("dfdfdfd");
-    //   store.getWorkoutSelectNext();
+    const currentURL = window.location.href;
+    console.log(currentURL);
 
+    // URL을 '/'를 기준으로 나누어 배열로 만듭니다.
+    const urlParts = currentURL.split('/');
+    console.log(urlParts);
 
+    // 배열의 끝에서부터 첫 번째와 두 번째 변수를 추출합니다.
+    const fId= urlParts.pop(); // 뒤에서 첫 번째 변수 (routine ID)
+    const rId = urlParts.pop(); // 뒤에서 두 번째 변수 (workout ID)
 
-    // 페이지를 그냥으로 이동 세션에 있는 axios 호출
+    const arr = store.getWorkoutSelectNext(rId, fId);
+
+    
+    console.log("rId:", rId);
+    console.log("fId:", fId);
+
+    router.push({name:'workout'});
 };
 </script>
 

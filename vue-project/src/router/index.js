@@ -18,6 +18,7 @@ import RoutineDetailView from '@/views/RoutineDetailView.vue'
 import RoutineBoardUpdateView from '@/views/BoardViews/RoutineBoardUpdateView.vue'
 import UserUpdateView from '@/views/UserUpdateView.vue'
 import WorkOutViewSelect from '@/views/WorkOutViewSelect.vue'
+import WorkOutFinish from '@/views/WorkOutFinish.vue';
 
 
 const router = createRouter({
@@ -105,6 +106,11 @@ const router = createRouter({
       component: WorkOutViewSelect
     },
     {
+      path: '/workout/finish/:routineId',
+      name: 'workoutFinish',
+      component: WorkOutFinish
+    },
+    {
       path: '/board/:id',
       name: 'detail',
       component : RoutineBoardDetailView
@@ -127,6 +133,17 @@ const router = createRouter({
 
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = sessionStorage.getItem("login");
+  if (to.name !== 'login' && !isAuthenticated) {
+    next({ name: 'login' }); // 로그인 페이지 이외의 모든 페이지는 로그인이 필요함
+  } else if (to.name === 'login' && isAuthenticated) {
+    next({ name: 'main' }); // 이미 로그인되어 있으면 로그인 페이지로 이동하지 않고 메인 페이지로 이동
+  } else {
+    next(); // 그 외의 경우에는 그냥 진행
+  }
+});
 
 export default router
 

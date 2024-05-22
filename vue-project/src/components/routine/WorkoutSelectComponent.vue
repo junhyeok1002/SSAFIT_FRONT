@@ -18,7 +18,7 @@ import FitnessWorkoutComponent from './FitnessWorkoutComponent.vue';
 
 // 수정된 부분: useRouter를 사용하여 router 객체를 가져옵니다.
 const router = useRouter();
-const store = useMuscleStore()
+const store = useMuscleStore();
 onMounted(() => {
     store.getWorkoutSelectInit();
 })
