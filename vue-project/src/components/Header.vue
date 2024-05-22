@@ -14,6 +14,7 @@
       <div v-if="userStore.user !== null" class="user-buttons" style="display: block;">
         <div class="user-greeting">반갑습니다, {{ userStore.user.name }} 님</div>
         <button @click="logout" class="btn btn-outline-primary">로그아웃</button>
+        <button @click="mypage" class="btn btn-outline-secondary">마이페이지</button>
       </div>
       <div v-else>
         <button @click="login" class="btn btn-outline-primary">로그인</button>
@@ -46,6 +47,7 @@ export default {
     goToMain() {
       console.log("메인 클릭");
       this.$router.push('/main');
+      location.reload();
     },
     goToHome() {
       this.$router.push('/main');
@@ -131,8 +133,13 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Parisienne&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100..900&family=Oswald:wght@200..700&family=Parisienne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Gowun+Dodum&display=swap');
 
 * {
-  font-family: "Hahmlet", serif;
+  font-family: "Gowun Dodum", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 </style>
+
