@@ -10,6 +10,7 @@ const REVIEW_URL = "http://localhost:8080/review"
 export const useReviewStore = defineStore('reivew', () => {
   const routineStore = useMuscleStore();
   const userStore = useUserStore();
+  const user = userStore.user;
   const reviewList = ref([])
   const router = useRouter();
   const page = ref(0);
@@ -46,8 +47,6 @@ export const useReviewStore = defineStore('reivew', () => {
 
   //리뷰 수정
   const updateReview = function(reviewUpdate) {
-    console.log("정보",reviewUpdate)
-    console.log("정보2",reviewUpdate.value);
     axios.put(REVIEW_URL+"/"+reviewUpdate.id,reviewUpdate)
     .then((res)=> {
       console.log("수정!!!",res);
@@ -120,10 +119,13 @@ export const useReviewStore = defineStore('reivew', () => {
   //리뷰 게시글 작성
   const createReview = function(info) {
     console.log("만들려는 게시글의 정보",info)
-    // axios.post(REVIEW_URL,info)
-    // .then((res)=> {
-    //   console.log("잘 됐니? ",res)
-    // })
+    axios.post(REVIEW_URL,info)
+    .then((res)=> {
+      console.log("잘 됐니? ",res),
+      console.log("유저정보는 있니?",user)
+      userStore.login({id:user.id,password:user.password});
+      router.replace({name:"main"})
+    })
   }
 
 

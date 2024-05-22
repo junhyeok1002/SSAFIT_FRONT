@@ -12,23 +12,19 @@ const router = useRouter();
 const route = useRoute();
 const nowReview = reviewStore.review;
 
-console.log("현재 내용 : ",nowReview);
+
 const newReview = ref({
-    useId:user.id,
+    userId:user.id,
     userName:user.name,
     title:"",
     content:"",
     routineId:route.params.routineId
 })
 
-const push = function() {
-    console.log("지금까지 작성 내용 : ",newReview.value);
-}
-
 
 
 const back = function() {
-    router.replace({name:'detail',params:{id:route.params.id}});
+    router.replace({name:'main'});
 }
 
 const onTitle = function (event) {
@@ -41,7 +37,7 @@ const onContent = function (event) {
 
 const submitForm = function() {
     console.log("딸각")
-    console.log("현재 내용 : ",newReview.value.title, newReview.value.content,typeof newReview.value.title, newReview.value.title.length);
+    console.log("현재 내용 : ");
     console.log(reviewStore.review);
     // if (newReview.value.title.length === 0) {
     //     newReview.value.title=reviewStore.review.title;
@@ -49,14 +45,13 @@ const submitForm = function() {
     // if (newReview.value.content.length === 0) {
     //     newReview.value.content=reviewStore.review.content;
     // }
-    reviewStore.updateReview(newReview.value);
+    reviewStore.createReview(newReview.value);
 }
 
 </script>
 
 <template>
     <div>
-        만들래!
         <div class="container">
             <div class="row justify-content-center mt-5">
             <div class="col-md-6">
@@ -75,7 +70,7 @@ const submitForm = function() {
 
                     <div class="text-center">
                         <button class="btn btn-danger" @click="back">작성취소</button>
-                        <button type="submit" class="btn btn-primary" @click="push">작성완료</button>
+                        <button type="submit" class="btn btn-primary">작성완료</button>
                     </div>
                     </form>
                 </div>
