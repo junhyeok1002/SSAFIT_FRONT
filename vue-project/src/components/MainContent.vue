@@ -1,11 +1,16 @@
 <template>
   <div>
     <!-- 카카오 맵을 표시할 div -->
-    <div ref="map" style="width:500px;height:400px;"></div>
+    <!-- <div ref="map" style="width:500px;height:400px;"></div> -->
+    <KakaoMapComponent/>
   </div>
 </template>
 
-<script>
+<script setup>
+    import KakaoMapComponent from '@/components/KakaoMapComponent.vue';
+</script>
+
+<!-- <script>
 export default {
   mounted() {
     // 외부 스크립트 로드
@@ -32,6 +37,13 @@ export default {
     }
   }
 };
+</script> -->
+
+
+<script setup>
+
+
+
 </script>
   
   <style scoped>
@@ -44,3 +56,4 @@ export default {
   }
   </style>
   
+

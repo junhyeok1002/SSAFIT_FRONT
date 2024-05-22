@@ -47,11 +47,11 @@ export default {
     goToMain() {
       console.log("메인 클릭");
       this.$router.push('/main');
-      location.reload();
+      // location.reload();
     },
     goToHome() {
       this.$router.push('/main');
-      location.reload();
+      // location.reload();
     },
     goToCreateRoutine() {
       this.$router.push('/create');

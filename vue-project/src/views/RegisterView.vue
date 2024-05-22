@@ -1,34 +1,29 @@
 <template>
-  <div class="signup-form">
-    <h2>회원가입</h2>
+  <div class="centered-container">
+  <div class="signup-form" style="margin: 0;">
+    <div class="logo">
+        <img src="@/assets/img/Logo2.jpg" alt="로고" class="logo-img">
+        <div class="title" style="font-weight: bold;">SSAFIT</div>
+      </div>
+
+    <h2 style="margin-top: 1rem; margin-bottom: 1rem;">회원가입</h2>
     <form @submit.prevent="handleSubmit">
       <div class="temp">
-        <div style="width: 25%;">
-          <label for="id" class="info">ID</label>
-        </div>
-        <input type="text" v-model="form.id" required style="width: 60%;"/>
+        <input type="text" v-model="form.id" placeholder="ID" required style="width: 85%;"/>
       </div>
       <div class="temp">
-        <div style="width: 25%;">
-          <label for="pw" class="info">Password</label>
-        </div>
-        <input type="password" v-model="form.password" required style="width: 60%;"/>
+        <input type="password" v-model="form.password" placeholder="Password" required style="width: 85%;"/>
       </div>
       <div class="temp">
-        <div style="width: 25%;">
-          <label for="name" class="info">Name</label>
-        </div>
-        <input type="text" v-model="form.name" required style="width: 60%;"/>
+        <input type="text" v-model="form.name" placeholder="Name" required style="width: 85%;"/>
       </div>
       <div class="temp">
-        <div style="width: 25%;">
-          <label for="address" class="info">Address</label>
-        </div>
-        <input type="text" v-model="form.address" required style="width: 60%;"/>
+        <input type="text" v-model="form.address" placeholder="Address" required style="width: 85%;"/>
       </div>
-      <button type="submit">가입하기</button>
+      <button type="submit" style="margin-top: 0rem;">가입하기</button>
     </form>
   </div>
+</div>
 </template>
 
 <script>
@@ -93,14 +88,14 @@ export default {
   font-size: 150%;
   padding: 10px;
   margin-top: 5%;
-  background-color: #a3ea82;
+  background-color: #9dbfd3;
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 .signup-form button:hover {
-  background-color: #5c988b;
+  background-color: #4556a0;
 }
 
 .temp {
@@ -113,6 +108,14 @@ export default {
 .info{
   font-size: 200%;
   margin-right: 5%;
+}
+
+.centered-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 
 
