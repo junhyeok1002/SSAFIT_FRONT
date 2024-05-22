@@ -4,15 +4,21 @@
       <img src="@/assets/img/Logo.png" alt="로고" class="logo-img">
       <div class="title">SSAFIT</div>
     </div>
-    <div v-if="userStore.user !== null" class="userInfo">
-      <div class="user-buttons" style="display: block;">
+    <div style="display: flex;">
+      <div @click="goToHome" class="link">홈으로</div>
+      <div @click="goToCreateRoutine" class="link">루틴 만들기</div>
+      <div @click="goToRoutineBoard"  class="link">루틴 게시판</div>
+      <div @click="goToRoutineMyPage"  class="link">마이 페이지</div>
+    </div>
+    <div class="user-info">
+      <div v-if="userStore.user !== null" class="user-buttons" style="display: block;">
         <div class="user-greeting">반갑습니다, {{ userStore.user.name }} 님</div>
         <button @click="logout" class="btn btn-outline-primary">로그아웃</button>
         <button @click="mypage" class="btn btn-outline-secondary">마이페이지</button>
       </div>
-    </div>
-    <div v-else>
-      <button @click="login" class="btn btn-outline-primary">로그인</button>
+      <div v-else>
+        <button @click="login" class="btn btn-outline-primary">로그인</button>
+      </div>
     </div>
   </div>
 </template>
@@ -41,14 +47,26 @@ export default {
     goToMain() {
       console.log("메인 클릭");
       this.$router.push('/main');
+      location.reload();
+    },
+    goToHome() {
+      this.$router.push('/main');
+      location.reload();
+    },
+    goToCreateRoutine() {
+      this.$router.push('/create');
+    },
+    goToRoutineBoard() {
+      this.$router.push('/board');
+    },goToRoutineMyPage(){
+      this.$router.push('/mypage');
     }
-
   }
 };
 </script>
 
 <style scoped>
-
+/* 스타일은 여기에 작성 */
 .header {
   display: flex;
   justify-content: space-between;
@@ -61,6 +79,18 @@ export default {
   display: flex;
   align-items: center;
 }
+
+.link{
+  margin-right: 5rem;
+  margin-left: 5rem;
+  font-weight: bold;
+}
+
+.link:hover{
+  color: #4556a0;
+  /* // #9dbfd3, #4556a0 */
+}
+
 
 .logo-img {
   width: 50px;

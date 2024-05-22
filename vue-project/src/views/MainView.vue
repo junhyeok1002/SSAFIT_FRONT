@@ -3,13 +3,19 @@
   import Header from '@/components/Header.vue';
   import MainContent from '@/components/MainContent.vue';
   import Sidebar from '@/components/Sidebar.vue';
-
+  import CarouselComponent from '@/components/CarouselComponent.vue';
 
 </script>
 
 <template>
     <div id="app">
       <Header />
+      <CarouselComponent />
+
+
+
+
+
       <div class="content">
         <MainContent />
         <Sidebar />
