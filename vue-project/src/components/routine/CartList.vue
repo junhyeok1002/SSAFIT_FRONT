@@ -125,9 +125,9 @@
 
 
     #CartBody{
-        max-height: 76.95vh;
+        max-height: 75vh;
         overflow-y: auto;
-        height: 76.95vh;
+        height: 75vh;
     }
 
     .container {

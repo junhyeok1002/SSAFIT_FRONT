@@ -1,11 +1,12 @@
 <template>
+    <Header />
     <div>
-        <div id="LeftTitle">
+        <!-- <div id="LeftTitle">
             <h4>운동하기SELECT</h4>
             <hr>
-        </div>
+        </div> -->
 
-        <div style="display: flex; height: 80vh; ">
+        <div style="display: flex; height: 90vh; ">
             <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
                 <hr>
                 <div class="top-section">
@@ -35,7 +36,7 @@
                 </div>
             </div>
             <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-                <YoutubeView style="height: 75vh;" />
+                <YoutubeView style="height: 82vh;" />
 
                 <div class="container">
                     <div id="CartButton" @click="nextWorkout">
@@ -48,6 +49,7 @@
 </template>
 
 <script setup>
+import Header from '@/components/Header.vue';
 import YoutubeView from '@/views/YoutubeView.vue';
 import { useMuscleStore } from '@/stores/routine';
 import { useRouter } from 'vue-router'; // 수정된 부분: useRouter를 import합니다.

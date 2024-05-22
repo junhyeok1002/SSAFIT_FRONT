@@ -118,7 +118,7 @@ onMounted(async () => {
     height: 100%;
     max-height: 100%;
     overflow-y: auto;
-    margin-top: 7rem;
+    margin-top: 3rem;
 }
 
 .muscle-info-table {

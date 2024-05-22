@@ -25,8 +25,8 @@ const removeRoutine = async function(routineId) {
 <template>
     <ul>
         <li v-for="(value, key, index) in user.favoriteRoutine" style="display: flex;">
-        <button style="width: 90%;" class="btn btn-outline-secondary" @click="goToWorkOut(routineInfo[key])">{{ value }}</button>
-        <button style="width: 10%;" class="btn btn-outline-danger" @click="removeRoutine(routineInfo[key])">삭제</button>
+            <button style="width: 90%;" class="btn btn-outline-secondary" @click="goToWorkOut(routineInfo[key])">{{ value }}</button>
+            <button style="width: 10%;" class="btn btn-outline-danger" @click="removeRoutine(routineInfo[key])">삭제</button>
         </li>
     </ul>
 </template>

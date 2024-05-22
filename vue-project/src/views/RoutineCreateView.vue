@@ -1,7 +1,8 @@
 <template>
-    <div>
+	<Header />
+    <!-- <div>
         <div id="Header1">루틴 만들기</div>
-    </div>
+    </div> -->
     
     <div id="outer">
 		
@@ -17,6 +18,7 @@
 </template>
 
 <script setup>
+	import Header from '@/components/Header.vue';
     import CartList from '@/components/routine/CartList.vue';
 import MuscleList from '@/components/routine/MuscleList.vue'
 </script>
@@ -25,6 +27,7 @@ import MuscleList from '@/components/routine/MuscleList.vue'
 	#Header1{
 		font-weight: bold;
 		font-size: 1.5rem;
+		margin-top: 1rem;
 	}
 
     #outer {

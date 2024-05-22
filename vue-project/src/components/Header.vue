@@ -14,7 +14,7 @@
       <div v-if="userStore.user !== null" class="user-buttons" style="display: block;">
         <div class="user-greeting">반갑습니다, {{ userStore.user.name }} 님</div>
         <button @click="logout" class="btn btn-outline-primary">로그아웃</button>
-        <button @click="mypage" class="btn btn-outline-secondary">마이페이지</button>
+        <button @click="update" class="btn btn-outline-secondary">정보수정</button>
       </div>
       <div v-else>
         <button @click="login" class="btn btn-outline-primary">로그인</button>
@@ -60,6 +60,9 @@ export default {
       this.$router.push('/board');
     },goToRoutineMyPage(){
       this.$router.push('/mypage');
+    },
+    update() {
+        this.$router.push('/userUpdate');
     }
   }
 };
@@ -140,6 +143,7 @@ export default {
   font-family: "Gowun Dodum", sans-serif;
   font-weight: 400;
   font-style: normal;
+  text-align: center;
 }
 </style>
 

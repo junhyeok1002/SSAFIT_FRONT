@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <div>
     <div id="LeftTitle">
       <h4>운동 완료</h4>
@@ -17,7 +18,7 @@
       </div>
     </div>
 
-    <div style="display: flex; height: 80vh; ">
+    <div style="display: flex; height: 70vh; ">
       <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
         <div id="LeftTitle">
           선택한 운동 순서
@@ -40,6 +41,7 @@
 </template>
 
 <script setup>
+import Header from '@/components/Header.vue';
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/useUserStore';
@@ -91,6 +93,7 @@ const goToReview = function() {
   background-color: white;
   font-weight: bold;
   font-size: 1.2rem;
+  margin-top: 1rem;
 }
 
 .top-section,
