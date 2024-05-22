@@ -14,7 +14,6 @@
       <div v-if="userStore.user !== null" class="user-buttons" style="display: block;">
         <div class="user-greeting">반갑습니다, {{ userStore.user.name }} 님</div>
         <button @click="logout" class="btn btn-outline-primary">로그아웃</button>
-        <button @click="mypage" class="btn btn-outline-secondary">마이페이지</button>
       </div>
       <div v-else>
         <button @click="login" class="btn btn-outline-primary">로그인</button>
@@ -47,7 +46,6 @@ export default {
     goToMain() {
       console.log("메인 클릭");
       this.$router.push('/main');
-      location.reload();
     },
     goToHome() {
       this.$router.push('/main');
