@@ -3,6 +3,7 @@ import { useReviewStore } from '@/stores/useReviewStore';
 import { useUserStore } from '@/stores/useUserStore';
 import { computed,onMounted,ref } from 'vue';
 import { useRouter,RouterLink } from 'vue-router'
+import Header from '@/components/Header.vue';
 
 const router = useRouter();
 const reviewStore = useReviewStore();
@@ -69,6 +70,7 @@ const remove =  async function(id) {
 
 
 <template>
+  <Header/>
     <div class="container mt-4 board">
       <h1 class="text-center mb-4">루틴 게시판</h1>
       <div class="box mb-4" style="display: flex;">
