@@ -150,12 +150,12 @@ export const useUserStore = defineStore('user', () => {
   }
 
   //즐겨찾기 삭제
-  const deleteFav = function(routineId) {
+  const deleteFav = async function(routineId) {
     console.log("삭제버튼!",)
-    axios.post(`${USER_URL}/favorite/delete/${routineId}`)
-    .then(()=> {
+    await axios.post(`${USER_URL}/favorite/delete/${routineId}`)
+    .then(async ()=> {
       console.log("즐겨찾기 삭제 완료",user.value.id,user.value.password)
-      login({id:user.value.id,password:user.value.password})
+      await login({id:user.value.id,password:user.value.password})
     })
   }
 

@@ -4,6 +4,7 @@ import { useReviewStore } from '@/stores/useReviewStore';
 import { useRouter } from 'vue-router';
 import { onMounted } from 'vue'
 import Header from '@/components/Header.vue';
+import favList from '@/components/routine/favList.vue'
 
 
 const userStore = useUserStore();
@@ -41,11 +42,7 @@ const home = function() {
         <div class="border p-3 mr-3 flex-grow-1">
           <div class="mb-4">
             <h3>즐겨찾기 한 운동들</h3>
-            <div class="border p-2 mb-2" v-for="(fav, index) in user.favoriteRoutine" :key="index">
-              <span v-for="(value, key) in fav" :key="key">
-                {{ value }}
-              </span>
-            </div>
+            <favList/>
           </div>
           <div>
             <h3>끝낸 운동들</h3>

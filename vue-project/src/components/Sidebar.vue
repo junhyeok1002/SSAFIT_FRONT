@@ -7,14 +7,15 @@
 
       
       <div class="favorite-routines">
-        <!-- <favList @routineId="route.params.routineId"/> -->
+        <favList />
       </div>
 
     </div>
 </template>
 
 <script>
-  import favList from '@/components/routine/favList.vue'
+import favList from '@/components/routine/favList.vue'
+
   export default {
     components: {
     favList
