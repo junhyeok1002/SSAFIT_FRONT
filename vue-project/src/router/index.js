@@ -18,6 +18,7 @@ import RoutineDetailView from '@/views/RoutineDetailView.vue'
 import RoutineBoardUpdateView from '@/views/BoardViews/RoutineBoardUpdateView.vue'
 import UserUpdateView from '@/views/UserUpdateView.vue'
 import WorkOutViewSelect from '@/views/WorkOutViewSelect.vue'
+import WorkOutFinish from '@/views/WorkOutFinish.vue';
 
 
 const router = createRouter({
@@ -105,6 +106,11 @@ const router = createRouter({
       component: WorkOutViewSelect
     },
     {
+      path: '/workout/finish/:routineId',
+      name: 'workoutFinish',
+      component: WorkOutFinish
+    },
+    {
       path: '/board/:id',
       name: 'detail',
       component : RoutineBoardDetailView
@@ -140,4 +146,3 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router
-
