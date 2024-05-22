@@ -7,7 +7,7 @@
 
       
       <div class="favorite-routines">
-        <favList @routineId="route.params.routineId"/>
+        <!-- <favList @routineId="route.params.routineId"/> -->
       </div>
 
     </div>
