@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useMuscleStore } from '@/stores/routine'
+import {useUserStore} from '@/stores/useUserStore'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
@@ -8,6 +9,7 @@ import { useRouter } from 'vue-router'
 const REVIEW_URL = "http://localhost:8080/review"
 export const useReviewStore = defineStore('reivew', () => {
   const routineStore = useMuscleStore();
+  const userStore = useUserStore();
   const reviewList = ref([])
   const router = useRouter();
   const page = ref(0);
@@ -62,11 +64,13 @@ export const useReviewStore = defineStore('reivew', () => {
   }
 
   // 리뷰 삭제
+  // 삭제시 마이페이지의 내가 작성한 게시글도 갱신필요
   const removeReview = function(id) {
     console.log(REVIEW_URL+"/"+id)
     axios.delete(REVIEW_URL+"/"+id)
     .then((res) => {
       console.log("삭제 완료");
+      userStore.getuserList();
       router.replace({name:'board'})
     })
   }
