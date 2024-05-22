@@ -27,6 +27,9 @@
 
     // 로컬 스토리지에서 데이터를 가져와서 cartItems에 할당하는 함수
     const loadCartItems = () => {
+        localStorage.removeItem('routineId');
+        localStorage.removeItem('finishResult');
+
         const localStorageKeys = Object.keys(localStorage);
         const allData = {};
         for (let key of localStorageKeys) {
@@ -47,9 +50,17 @@
     });
 
     const generateRoutine = () => {
+        localStorage.removeItem('routineId');
+        localStorage.removeItem('finishResult');
+
         if (localStorage.length === 0) {
             console.log("로컬 스토리지가 비어 있습니다.");
             return; // 로컬 스토리지가 비어 있으면 함수 실행 중단
+        }
+
+        if (localStorage.length === 1) {
+            alert("운동을 2개 이상 담아 주세요!");
+            return; 
         }
 
         // 로컬 스토리지에서 모든 아이템 가져오기

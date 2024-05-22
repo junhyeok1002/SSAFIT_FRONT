@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="LeftTitle">
-        <h4>루틴 분석</h4>
+        루틴 분석
         <hr>
         </div>
 
@@ -34,11 +34,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
-    #LeftTitle {
-        position: sticky;
-        top: 0;
-        background-color: white;
-    }
+#LeftTitle {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
 
 
 </style>
