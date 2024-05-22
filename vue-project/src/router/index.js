@@ -129,7 +129,12 @@ const router = createRouter({
       path: '/userUpdate',
       name: 'userUpdate',
       component: UserUpdateView
-    }
+    },
+    {
+      path: '/createReview/:routineId',
+      name: 'createReview',
+      component: RouteBoardCreateView
+    },
 
   ]
 })
