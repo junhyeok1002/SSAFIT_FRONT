@@ -8,11 +8,8 @@ const userStore = useUserStore();
 </script>
 
 <template>
-  <header>
+  <header style="display: none;">
     <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <RouterLink class="nav-link" to="/">Home</RouterLink> 
-      </li>
       <li class="nav-item">
         <RouterLink class="nav-link" to="/main">Main</RouterLink>
       </li>

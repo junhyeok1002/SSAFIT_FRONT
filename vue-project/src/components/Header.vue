@@ -2,7 +2,8 @@
   <div class="header">
     <div class="logo">
       <!-- <img src="로고이미지주소" alt="로고" class="logo-img"> -->
-      <span class="logo-text">SSAFIT</span>
+
+      <div class="title">SSAFIT</div>
     </div>
     <div v-if="userStore.user !== null" class="userInfo">
       <div class="user-greeting">반갑습니다, {{ userStore.user.name }} 님</div>
@@ -43,6 +44,8 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Parisienne&display=swap');
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -73,4 +76,14 @@ export default {
 .user-buttons button {
   margin-left: 5px;
 }
+
+.title {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+
 </style>
