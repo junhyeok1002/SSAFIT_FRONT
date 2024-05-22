@@ -117,6 +117,15 @@ export const useReviewStore = defineStore('reivew', () => {
     })
   }
 
+  //리뷰 게시글 작성
+  const createReview = function(info) {
+    console.log("만들려는 게시글의 정보",info)
+    // axios.post(REVIEW_URL,info)
+    // .then((res)=> {
+    //   console.log("잘 됐니? ",res)
+    // })
+  }
+
 
   return { 
     reviewList,
@@ -131,6 +140,7 @@ export const useReviewStore = defineStore('reivew', () => {
     getValue,
     searchReview,
     reviewCondition,
+    createReview
 
   }
 })
