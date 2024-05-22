@@ -42,11 +42,14 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/useUserStore';
 import RoutineChart from '@/components/routine/RoutineChart.vue';
 import FitnessComponent from '@/components/routine/FitnessComponent.vue';
 
+
 // finishResult 변수를 ref()로 초기화
 const finishResult = ref('');
+const userStore = useUserStore()
 
 // 컴포넌트가 마운트된 후 실행되는 함수
 onMounted(() => {
@@ -63,6 +66,7 @@ const router = useRouter();
 
 const addToFavorites = function() {
     // router.push({name:'fav'});
+    userStore.registFavorite();
     alert("즐겨찾기 해라!!!!!!!코드 구현하는 너말이야!!");
 }
 

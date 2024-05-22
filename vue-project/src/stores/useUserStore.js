@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useMuscleStore} from '@/stores/routine'
 
 const USER_URL = "http://localhost:8080"
@@ -121,9 +121,31 @@ export const useUserStore = defineStore('user', () => {
       sessionStorage.setItem("userList",JSON.stringify(userList.value));
     })
   }
-  
+
+  // 
+  const registFavorite = function() {
+    console.log("즐찾");
+    
+    // 현재 URL 가져오기
+    const currentUrl = window.location.href;
+
+    // URL을 '/'로 분할하여 배열로 변환
+    const urlParts = currentUrl.split('/');
+
+    // 맨 뒤의 요소 출력
+    const routindId = urlParts[urlParts.length - 1];
+
+    console.log("즐겨찾기 등록!!!", routindId);
+
+    axios.post(`${USER_URL}/favorite/${routindId}`)
+    .then((res)=> {
+      alert("즐겨찾기 등록이 완료 되었습니다!");
+    })
+
+    
+  }
 
   return { 
-    USER_URL,user,login,logout,signup,userUpdate,idToName,userList,getuserList,
+    USER_URL,user,login,logout,signup,userUpdate,idToName,userList,getuserList,registFavorite,
   }
 })
