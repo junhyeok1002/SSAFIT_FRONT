@@ -65,6 +65,13 @@ const remove =  async function(id) {
     location.reload();
 }
 
+//루틴 아이디로 생성된 파란색 버튼을 아무거나 누르면
+//루틴 즐찾
+const addRoutine = function(routineId) {
+  router.push({name:'RoutineDetailView',params:{routineId:routineId}});
+}
+
+
 
 </script>
 
@@ -88,20 +95,20 @@ const remove =  async function(id) {
         <button @click="search" class="btn btn-primary w-100">검색</button>
       </div>
   
-      <div @click="detail(review.reviewId)" v-for="review in currentPageBoardList" :key="review.reviewId" class="col-sm-9 bg-light p-3 border rounded mb-3 mx-auto">
-        <div class="title">
+      <div v-for="review in currentPageBoardList" :key="review.reviewId" class="col-sm-9 bg-light p-3 border rounded mb-3 mx-auto">
+        <div class="title" @click="detail(review.reviewId)">
             <span class="text-decoration-none text-dark">
                 {{ review.title }}
             </span>
         </div>
-        <div v-if="review.content.length < 15" class="content">
+        <div @click="detail(review.reviewId)" v-if="review.content.length < 15" class="content">
           {{ review.content }}
         </div>
-        <div v-else class="content">
+        <div @click="detail(review.reviewId)" v-else class="content">
           {{ review.content.substring(0, 15) }}...
         </div>
         <div class="row mt-2">
-          <div class="col-auto me-auto text-muted">{{ review.userName }} | {{ review.createTime }}</div>
+          <div @click="detail(review.reviewId)" class="col-auto me-auto text-muted">{{ review.userName }} | {{ review.createTime }}</div>
           <div class="col-auto">
             {{ review.viewCnt }}
             <template v-if="userInfo !== null && review.userId === userInfo.id">
@@ -110,10 +117,10 @@ const remove =  async function(id) {
             </template>
           </div>
         </div>
-        <div class="mt-2">
-          <button class="btn btn-outline-primary btn-sm mr-1" v-for="i in review.routineId" :key="i">
+        <div class="mt-2" @click="addRoutine(review.routine)">
+          <div class="btn btn-outline-primary btn-sm mr-1" v-for="i in review.routineId" :key="i">
             {{ i }}
-          </button>
+          </div>
         </div>
       </div>
   

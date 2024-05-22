@@ -26,6 +26,7 @@ export const useReviewStore = defineStore('reivew', () => {
       for (let i = 0; i < reviewList.value.length; i ++) {
         const id = reviewList.value[i].routineId;
         await routineStore.getOneRoutine(id);
+        reviewList.value[i].routine = reviewList.value[i].routineId;
         reviewList.value[i].routineId = routineStore.routine;
         console.log("???",reviewList.value[i].routineId)
       }
