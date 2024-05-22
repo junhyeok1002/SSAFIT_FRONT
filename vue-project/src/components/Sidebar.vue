@@ -9,8 +9,9 @@
       <div class="favorite-routines">
         <h3>즐겨찾는 루틴들 목록 선택</h3>
         <ul>
-          <li v-for="(value, key, index) in routineList">
-            <button class="btn btn-outline-secondary" @click="goToWorkOut(value)">{{ userStore.user.favoriteRoutine[key] }}</button>
+          <li v-for="(value, key, index) in routineList" style="display: flex;">
+            <button style="width: 90%;" class="btn btn-outline-secondary" @click="goToWorkOut(value)">{{ userStore.user.favoriteRoutine[key] }}</button>
+            <button style="width: 10%;" class="btn btn-outline-danger" @click="removeRoutine(value)">삭제</button>
           </li>
 
         </ul>
@@ -44,6 +45,9 @@
         goToWorkOut(routineId) {
           console.log(routineId);
           this.$router.push({name:'RoutineDetailView',params:{routineId:routineId}});
+        },
+        removeRoutine(routineId) {
+          this.userStore.deleteFav(routineId)
         }
       }
     };

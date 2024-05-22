@@ -37,7 +37,6 @@ export const useUserStore = defineStore('user', () => {
     console.log(info)
     await axios.post(`${USER_URL}/login`,info)
     .then(async (res) => {
-      window.alert("로그인 완료!!");
       console.log(res);
       user.value = res.data;
       //이 부분에서 즐겨찾기와 완료한 운동들 전부 명칭으로 변환
@@ -48,14 +47,15 @@ export const useUserStore = defineStore('user', () => {
       await idToName(user.value.doneRoutine);
       user.doneRoutine = routineStore.routine;
 
-      console.log("유저 정보 : ",user.value);
-      // 이제 세션영역에 유저정보가 있음
-      console.log("JSON으로 바꿔줘",JSON.stringify(res.data));
-      sessionStorage.setItem("login",JSON.stringify(res.data));
-      console.log("잘 변환됐니?",JSON.parse(sessionStorage.getItem("login")))
       //유저가 작성한 글들 가져와!!
       getuserList();
-      router.replace({name:"main"});
+      if (! sessionStorage.getItem("login")) {
+        // 이제 세션영역에 유저정보가 있음
+        sessionStorage.setItem("login",JSON.stringify(res.data));
+        router.replace({name:"main"});
+      } else {
+        sessionStorage.setItem("login",JSON.stringify(res.data));
+      }
     })
     .catch((err)=>{
       window.alert("아이디나 비번이 맞지 않습니다!!!")
@@ -122,28 +122,44 @@ export const useUserStore = defineStore('user', () => {
     })
   }
 
-  // 
+  // 즐겨찾기 운동등록
   const registFavorite = function() {
     console.log("즐찾");
-    
     // 현재 URL 가져오기
     const currentUrl = window.location.href;
-
     // URL을 '/'로 분할하여 배열로 변환
     const urlParts = currentUrl.split('/');
-
     // 맨 뒤의 요소 출력
     const routindId = urlParts[urlParts.length - 1];
-
     console.log("즐겨찾기 등록!!!", routindId);
-
     axios.post(`${USER_URL}/favorite/${routindId}`)
     .then((res)=> {
+      login({id:user.value.id,password:user.value.password})
       alert("즐겨찾기 등록이 완료 되었습니다!");
     })
   }
 
+  //운동완료 등록
+  const registDone = function(id) {
+    axios.post(`${USER_URL}/done/${id}`)
+    .then(()=> {
+      console.log("끝났니????")
+      login({id:user.value.id,password:user.value.password})
+    })
+    
+  }
+
+  //즐겨찾기 삭제
+  const deleteFav = function(routineId) {
+    console.log("삭제버튼!",)
+    axios.post(`${USER_URL}/favorite/delete/${routineId}`)
+    .then(()=> {
+      console.log("즐겨찾기 삭제 완료",user.value.id,user.value.password)
+      login({id:user.value.id,password:user.value.password})
+    })
+  }
+
   return { 
-    USER_URL,user,login,logout,signup,userUpdate,idToName,userList,getuserList,registFavorite,
+    USER_URL,user,login,logout,signup,userUpdate,idToName,userList,getuserList,registFavorite,registDone,deleteFav
   }
 })

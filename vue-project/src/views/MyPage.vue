@@ -3,6 +3,8 @@ import { useUserStore } from '@/stores/useUserStore';
 import { useReviewStore } from '@/stores/useReviewStore';
 import { useRouter } from 'vue-router';
 import { onMounted } from 'vue'
+import Header from '@/components/Header.vue';
+
 
 const userStore = useUserStore();
 const reviewStore = useReviewStore();
@@ -20,13 +22,21 @@ const reviewDetail= function(id) {
 const update = function() {
     router.push({name:'userUpdate'})
 }
+
+const home = function() {
+  router.push({name:'main'})
+}
 </script>
 
 <template>
+    <Header/>
     <div class="container mt-4">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>{{ user.name }}님의 마이페이지</h1>
-        <button class="btn btn-primary" @click="update">수정하기</button>
+        <div>
+          <button class="btn btn-primary" @click="home">홈으로</button>
+          <button class="btn btn-primary" @click="update">수정하기</button>
+        </div>
       </div>
       <div class="d-flex">
         <div class="border p-3 mr-3 flex-grow-1">
