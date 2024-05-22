@@ -47,14 +47,14 @@ export const useUserStore = defineStore('user', () => {
       await idToName(user.value.doneRoutine);
       user.doneRoutine = routineStore.routine;
 
-      console.log("유저 정보 : ",user.value);
-      // 이제 세션영역에 유저정보가 있음
-      console.log("JSON으로 바꿔줘",JSON.stringify(res.data));
-      sessionStorage.setItem("login",JSON.stringify(res.data));
-      console.log("잘 변환됐니?",JSON.parse(sessionStorage.getItem("login")))
       //유저가 작성한 글들 가져와!!
       getuserList();
-      router.replace({name:"main"});
+      if (! sessionStorage.getItem("login")) {
+        // 이제 세션영역에 유저정보가 있음
+        sessionStorage.setItem("login",JSON.stringify(res.data));
+        router.replace({name:"main"});
+      }
+      sessionStorage.setItem("login",JSON.stringify(res.data));
     })
     .catch((err)=>{
       window.alert("아이디나 비번이 맞지 않습니다!!!")
