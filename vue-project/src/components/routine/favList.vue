@@ -1,8 +1,9 @@
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter,useRoute } from 'vue-router';
 import { useUserStore } from '@/stores/useUserStore';
 
 const router = useRouter();
+const route = useRoute();
 const userStore = useUserStore();
 
 const goToWorkOut = function(routineId) {
@@ -23,7 +24,9 @@ const removeRoutine = function(routineId) {
         </li>
 
     </ul> -->
-    <div>여긴 즐찾</div>
+    <div>
+        여긴 즐찾 
+    </div>
 </template>
 
 <style scoped>

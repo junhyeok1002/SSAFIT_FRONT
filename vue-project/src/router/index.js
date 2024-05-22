@@ -140,7 +140,9 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = sessionStorage.getItem("login");
-  if (to.name !== 'login' && !isAuthenticated) {
+  if (to.name === 'register') {
+    next(); // 회원가입시 그냥 진행
+  }else if (to.name !== 'login' && !isAuthenticated) {
     next({ name: 'login' }); // 로그인 페이지 이외의 모든 페이지는 로그인이 필요함
   } else if (to.name === 'login' && isAuthenticated) {
     next({ name: 'main' }); // 이미 로그인되어 있으면 로그인 페이지로 이동하지 않고 메인 페이지로 이동

@@ -7,25 +7,28 @@
 
       
       <div class="favorite-routines">
-        <favList/>
+        <favList @routineId="route.params.routineId"/>
       </div>
 
     </div>
 </template>
 
-  <script>
-  // import favList from '@/components/routine/favList.vue'
+<script>
+  import favList from '@/components/routine/favList.vue'
   export default {
-      methods: {
-        goToMakeRoutine() {
-          this.$router.push('/create');
-        },
-        goToBoard() {
-          this.$router.push('/board');
-        },
-      }
-    };
-  </script>
+    components: {
+    favList
+    },
+    methods: {
+      goToMakeRoutine() {
+        this.$router.push('/create');
+      },
+      goToBoard() {
+        this.$router.push('/board');
+      },
+    }
+  };
+</script>
   
   <style scoped>
   .sidebar {
