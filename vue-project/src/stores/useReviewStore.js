@@ -51,6 +51,7 @@ export const useReviewStore = defineStore('reivew', () => {
     axios.put(REVIEW_URL+"/"+reviewUpdate.id,reviewUpdate)
     .then((res)=> {
       console.log("수정!!!",res);
+      userStore.getuserList();
       router.replace({name:'board'})
     })
   }

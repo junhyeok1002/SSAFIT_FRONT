@@ -43,6 +43,8 @@ export const useUserStore = defineStore('user', () => {
       //이 부분에서 즐겨찾기와 완료한 운동들 전부 명칭으로 변환
       await idToName(user.value.favoriteRoutine);
       user.favoriteRoutine = routineStore.routine;
+      // user.favoriteRoutine.id = user.favoriteRoutine;
+      // user.favoriteRoutine.name = routineStore.routine;
       await idToName(user.value.doneRoutine);
       user.doneRoutine = routineStore.routine;
 
@@ -66,6 +68,7 @@ export const useUserStore = defineStore('user', () => {
     .then(() => {
       user.value = null;
       sessionStorage.removeItem("login");
+      sessionStorage.removeItem("userList");
       console.log("로그아웃 완료")
       router.replace({name : "login"})
     })
@@ -121,6 +124,6 @@ export const useUserStore = defineStore('user', () => {
   
 
   return { 
-    USER_URL,user,login,logout,signup,userUpdate,idToName,userList,getuserList
+    USER_URL,user,login,logout,signup,userUpdate,idToName,userList,getuserList,
   }
 })

@@ -9,10 +9,9 @@
       <div class="favorite-routines">
         <h3>즐겨찾는 루틴들 목록 선택</h3>
         <ul>
-          <li><button class="btn btn-outline-secondary" @click="goToWorkOut">운동하기</button></li>
-          <li><button class="btn btn-outline-secondary" @click="goToWorkOut">운동하기</button></li>
-          <li><button class="btn btn-outline-secondary" @click="goToWorkOut">운동하기</button></li>
-          <li><button class="btn btn-outline-secondary" @click="goToWorkOut">운동하기</button></li>
+          <li v-for="(value, key, index) in routineList">
+            <button class="btn btn-outline-secondary" @click="goToWorkOut(value)">{{ userStore.user.favoriteRoutine[key] }}</button>
+          </li>
 
         </ul>
       </div>
@@ -21,8 +20,19 @@
   </template>
 
   <script>
-    export default {
+  import { useUserStore } from '@/stores/useUserStore';
+  export default {
+    setup() {
+      const userStore = useUserStore();
+      // console.log(userStore.originalUser)
+      return {
+        userStore
+      };
+    },
       data() {
+        return {
+          routineList : JSON.parse(this.userStore.user.favorite)
+        }
       },
       methods: {
         goToMakeRoutine() {
@@ -31,12 +41,13 @@
         goToBoard() {
           this.$router.push('/board');
         },
-        goToWorkOut() {
-          this.$router.push('/workout');
+        goToWorkOut(routineId) {
+          console.log(routineId);
+          this.$router.push({name:'RoutineDetailView',params:{routineId:routineId}});
         }
       }
     };
-</script>
+  </script>
   
   <style scoped>
   .sidebar {

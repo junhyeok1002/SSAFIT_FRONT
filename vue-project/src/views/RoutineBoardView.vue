@@ -1,67 +1,3 @@
-<template>
-    <div class="board">
-        <h1>루틴 게시판</h1>
-        <div>
-            <div class="box">
-                <input v-model="selected.reviewTitle" placeholder="제목">
-                <input v-model="selected.reviewAuthorName" placeholder="작성자명">
-                <select v-model="selected.reviewRoutineId">
-                    <option disabled value="">루틴</option>
-                    <option v-for="i in 3">{{ i }}</option>
-                </select>
-                <select v-model="selected.reviewDirection">
-                    <option disabled value="">조회수</option>
-                    <option>오름차순</option>
-                    <option>내림차순</option>
-                </select>
-                <button @click="search">검색</button>
-            </div>
-        </div>
-        <div style="margin: 0 auto;" class="col-sm-9 bg-light p-3 border" v-for="review in currentPageBoardList">
-            <div style="text-align: left;" class="title">
-                <a @click="detail(review.reviewId)">
-                    {{ review.title }}
-                </a>
-            </div>
-            <div v-if="review.content.length < 15" style="text-align: left;">
-                {{ review.content}}
-            </div>
-            <div v-else style="text-align: left;">
-                {{ review.content.substring(0, 15)}}...
-            </div>
-            <div class="row">
-                <div class="col-auto me-auto">{{ review.userName }} | {{ review.createTime }}</div>
-                
-                <div v-if="userInfo !== null && review.userId === userInfo.id"    class="col-auto">
-                    {{ review.viewCnt }} <button @click="update(review.reviewId)" >수정</button><button @click="remove(review.reviewId)" >삭제</button>
-                </div>
-                <div v-else  class="col-auto">
-                    {{ review.viewCnt }}
-                </div>
-            </div>
-            <div style="display: flex;">
-                <button class="btn btn-outline-primary" v-for="i in review.routineId">
-                    {{ i }}
-                </button>
-            </div>
-            <!-- <div style="display: flex;">
-                <a  v-for="asdf in review.routineId in " type="button"> 
-                    {{ asdf }}
-                </a>
-            </div> -->
-        </div>
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li v-for="i in reviewStore.page" :key=i class="page-item">
-                    <a class="page-link" href="#" @click="pagination(i)">{{i}}</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</template>
-
-
 <script setup>
 import { useReviewStore } from '@/stores/useReviewStore';
 import { useUserStore } from '@/stores/useUserStore';
@@ -131,31 +67,103 @@ const remove =  async function(id) {
 
 </script>
 
-<style scoped>
-    .board {
-        width: 70%;
-        margin: 0 auto;
-    }
-    /* .line{
-        border-left: 1px solid rgb(218, 218, 218);
-    } */
 
-    .number {
-        width: 10%;
-    }
-    .title {
-        width: 60%;
-    }
-    .writer {
-        width: 20%;
-    }
-
-    .viewCnt {
-        widows: 10%;
-    }
-
-    .title:hover {
-        text-decoration-line: underline;
-    } 
-
-</style>
+<template>
+    <div class="container mt-4 board">
+      <h1 class="text-center mb-4">루틴 게시판</h1>
+      <div class="box mb-4" style="display: flex;">
+        <input v-model="selected.reviewTitle" placeholder="제목" class="form-control mb-2">
+        <input v-model="selected.reviewAuthorName" placeholder="작성자명" class="form-control mb-2">
+        <select v-model="selected.reviewRoutineId" class="form-control mb-2">
+          <option disabled value="루틴선택">루틴</option>
+          <option v-for="i in 3" :key="i">{{ i }}</option>
+        </select>
+        <select v-model="selected.reviewDirection" class="form-control mb-2">
+          <option disabled value="">조회수</option>
+          <option>오름차순</option>
+          <option>내림차순</option>
+        </select>
+        <button @click="search" class="btn btn-primary w-100">검색</button>
+      </div>
+  
+      <div @click="detail(review.reviewId)" v-for="review in currentPageBoardList" :key="review.reviewId" class="col-sm-9 bg-light p-3 border rounded mb-3 mx-auto">
+        <div class="title">
+            <span class="text-decoration-none text-dark">
+                {{ review.title }}
+            </span>
+        </div>
+        <div v-if="review.content.length < 15" class="content">
+          {{ review.content }}
+        </div>
+        <div v-else class="content">
+          {{ review.content.substring(0, 15) }}...
+        </div>
+        <div class="row mt-2">
+          <div class="col-auto me-auto text-muted">{{ review.userName }} | {{ review.createTime }}</div>
+          <div class="col-auto">
+            {{ review.viewCnt }}
+            <template v-if="userInfo !== null && review.userId === userInfo.id">
+              <button class="btn btn-outline-dark btn-sm ml-2" @click="update(review.reviewId)">수정</button>
+              <button class="btn btn-outline-danger btn-sm ml-2" @click="remove(review.reviewId)">삭제</button>
+            </template>
+          </div>
+        </div>
+        <div class="mt-2">
+          <button class="btn btn-outline-primary btn-sm mr-1" v-for="i in review.routineId" :key="i">
+            {{ i }}
+          </button>
+        </div>
+      </div>
+  
+      <nav aria-label="Page navigation example" class="mt-4">
+        <ul class="pagination justify-content-center">
+          <li v-for="i in reviewStore.page" :key="i" class="page-item">
+            <a class="page-link" href="#" @click="pagination(i)">{{ i }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </template>
+  
+  <style scoped>
+  .board {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .box input,
+  .box select {
+    margin-bottom: 0.5rem;
+  }
+  
+  .box button {
+    margin-top: 0.5rem;
+  }
+  
+  .title a {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .title a:hover {
+    text-decoration: underline;
+  }
+  
+  .content {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .text-muted {
+    font-size: 0.9rem;
+  }
+  
+  button.ml-2 {
+    margin-left: 0.5rem;
+  }
+  
+  button.mr-1 {
+    margin-right: 0.5rem;
+  }
+  </style>
+  

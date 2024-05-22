@@ -1,38 +1,3 @@
-<template>
-    <div>
-        <h1>마이페이지</h1>
-        <div style="display: flex; margin: 0 auto;">
-            <h1>{{ user.name }}님의 마이페이지</h1>
-            <button @click="update">수정하기</button>
-        </div>
-        <div style="display: flex;">
-            <div class="border">
-                <h1>운동들</h1>
-                <h1>즐겨찾기 한 운동들</h1>
-                <div v-for="fav in user.favoriteRoutine">
-                    <div>
-                        <button class="btn btn-outline-primary" v-for="f in fav">{{ f }}</button>
-                    </div>
-                </div>
-                <h1>끝낸 운동들</h1>
-                <div v-for="done in user.doneRoutine">
-                    <div>
-                        <button class="btn btn-outline-success" v-for="d in done">{{ d }}</button>
-                    </div>
-                </div>
-            </div>
-            <div class="border">
-                <h1>작성한 게시글</h1>
-                <div class="border" v-for="review in userStore.userList" @click="reviewDetail(review.reviewId)">
-                    {{ review.title }}
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-</template>
-
 <script setup>
 import { useUserStore } from '@/stores/useUserStore';
 import { useReviewStore } from '@/stores/useReviewStore';
@@ -56,3 +21,78 @@ const update = function() {
     router.push({name:'userUpdate'})
 }
 </script>
+
+<template>
+    <div class="container mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>{{ user.name }}님의 마이페이지</h1>
+        <button class="btn btn-primary" @click="update">수정하기</button>
+      </div>
+      <div class="d-flex">
+        <div class="border p-3 mr-3 flex-grow-1">
+          <div class="mb-4">
+            <h3>즐겨찾기 한 운동들</h3>
+            <div class="border p-2 mb-2" v-for="(fav, index) in user.favoriteRoutine" :key="index">
+              <span v-for="(value, key) in fav" :key="key">
+                {{ value }}
+              </span>
+            </div>
+          </div>
+          <div>
+            <h3>끝낸 운동들</h3>
+            <div class="border p-2 mb-2" v-for="(done, index) in user.doneRoutine" :key="index">
+              <span v-for="(d, key) in done" :key="key">
+                {{ d }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="border p-3 flex-grow-1">
+          <h2>작성한 게시글</h2>
+          <div v-for="(value, index) in userStore.userList" :key="index">
+            <button style="width: 100%;" v-if="value.title.length > 4" class="btn btn-outline-secondary mb-2" @click="reviewDetail(value.reviewId)">
+                제목 : {{ value.title.substring(0,4) }}..  |  작성일자 : {{ value.createTime }}
+            </button>
+            <button v-else style="width: 100%;" class="btn btn-outline-secondary mb-2" @click="reviewDetail(value.reviewId)">
+              제목 : {{ value.title }}  |  작성일자 : {{ value.createTime }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <style scoped>
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  h2, h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .border {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+  }
+  
+  .p-3 {
+    padding: 1rem;
+  }
+  
+  .mr-3 {
+    margin-right: 1rem;
+  }
+  
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+  </style>
+  
