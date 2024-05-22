@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div id="LeftTitle"><h4>운동 목록</h4><hr></div>
     <div style="padding: 0.5rem;">
         <div v-if="store.FitnessListAgonist.length > 0">
@@ -12,6 +13,7 @@
             <FitnessComponent v-for="fitness in store.FitnessListSynergy2" :key="fitness.e_name" :fitness="fitness" />
             <br>
         </div>
+    </div>
     </div>
 </template>
 

@@ -135,6 +135,35 @@ export const useMuscleStore = defineStore('muscle', () => {
     })
   }
 
+  const WorkoutSelect = ref([]);
+  const WorkoutRemain = ref([]);
+  const getWorkoutSelectInit = function () {
+    // WorkoutSelect와 WorkoutRemain이 비어 있는지 확인
+    if (WorkoutSelect.value.length === 0 && WorkoutRemain.value.length === 0) {
+      console.log("시작됐네");
+      
+      const dynamicSegment = useRoute().params.routineId;
+      axios.get(`${REST_BOARD_API}/fitness/workout/${dynamicSegment}`)
+        .then((response) => {
+          WorkoutSelect.value = response.data.selection;
+          WorkoutRemain.value = response.data.remain;
+        })
+        .catch((error) => {
+          console.error("Error fetching workout data:", error);
+        });
+    }
+  };
+
+  const getWorkoutSelectNext = function () {
+    const rId = useRoute().params.routineId;
+    const fId = useRoute().params.fitnessId;
+    axios.get(`${REST_BOARD_API}/fitness/workout/${rId}/${fId}`)
+      .then((response) => {
+        WorkoutSelect.value = response.data.selection;
+        WorkoutRemain.value = response.data.remain;
+    })
+  }
+
   return { 
            MuscleList, getMuscleList,
            FitnessListAgonist, getFitnessListAgonist,
@@ -146,5 +175,6 @@ export const useMuscleStore = defineStore('muscle', () => {
            RoutineDetail, getRoutineDetail,
            RoutineFitnessDetail, getRoutineFitnessDetail,
            RoutineTotal, RoutineActivation, getRoutineActivation,
+           WorkoutSelect, WorkoutRemain, getWorkoutSelectInit, getWorkoutSelectNext
          }
 })

@@ -17,6 +17,7 @@ import ChatgptComponent from '@/components/chatgpt/ChatgptComponent.vue'
 import RoutineDetailView from '@/views/RoutineDetailView.vue'
 import RoutineBoardUpdateView from '@/views/BoardViews/RoutineBoardUpdateView.vue'
 import UserUpdateView from '@/views/UserUpdateView.vue'
+import WorkOutViewSelect from '@/views/WorkOutViewSelect.vue'
 
 
 const router = createRouter({
@@ -97,6 +98,11 @@ const router = createRouter({
       path: '/workout/:routineId',
       name: 'workout',
       component: WorkOutView
+    },
+    {
+      path: '/workout/:routineId/:fitnessId',
+      name: 'workoutselct',
+      component: WorkOutViewSelect
     },
     {
       path: '/board/:id',

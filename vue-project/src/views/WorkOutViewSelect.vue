@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="LeftTitle">
-            <h4>운동하기</h4>
+            <h4>운동하기SELECT</h4>
             <hr>
         </div>
 
@@ -31,16 +31,21 @@
                         <hr>
                     </div>
                     <!-- {{ store.RoutineDetail }} -->
-                    <WorkoutLeftComponent/>
+                    <WorkoutLeftComponent />
                 </div>
             </div>
             <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-                <YoutubeView />
+                <YoutubeView style="height: 75vh;" />
+
+                <div class="container">
+                    <div id="CartButton" @click="nextWorkout">
+                        다음으로
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
-
 
 <script setup>
 import YoutubeView from '@/views/YoutubeView.vue';
@@ -59,9 +64,15 @@ onMounted(() => {
     store.getWorkoutSelectInit();
 })
 
+const nextWorkout = () => {
+    console.log("dfdfdfd");
+    //   store.getWorkoutSelectNext();
+
+
+
+    // 페이지를 그냥으로 이동 세션에 있는 axios 호출
+};
 </script>
-
-
 
 
 
@@ -80,5 +91,32 @@ onMounted(() => {
     overflow-y: scroll;
     height: 50%;
     /* 스크롤바가 필요할 경우를 대비하여 설정 */
+}
+
+.container {
+    position: relative;
+    /* 상위 컴포넌트의 위치를 기준으로 하위 컴포넌트를 배치하기 위해 필요 */
+    padding: 0;
+}
+
+#CartButton {
+    position: relative;
+    /* 상위 컴포넌트를 기준으로 절대 위치 설정 */
+    bottom: 0;
+    /* 하단에 고정 */
+    width: 100%;
+    /* 너비를 상위 컴포넌트에 맞춤 */
+    background-color: #9dbfd3;
+    /* 배경색 추가 (옵션) */
+    text-align: center;
+    /* 텍스트 중앙 정렬 (옵션) */
+    padding: 10px;
+    /* 패딩 추가 (옵션) */
+    font-weight: bold;
+    color: white;
+}
+
+#CartButton:hover {
+    background-color: #4556a0;
 }
 </style>

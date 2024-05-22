@@ -20,6 +20,7 @@
         appearance: none;
         width: 80%;
         margin-bottom: 0.5rem;
+        height: 1.5rem;
     }
     #progress::-webkit-progress-bar {
         background:#f0f0f0;

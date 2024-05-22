@@ -6,12 +6,12 @@
         </div>
 
         <!-- {{ store.RoutineDetail.activation.TOTAL }} -->
-        <div v-for="(value, key) in store.RoutineTotal" :key="key">
+        <div v-for="(value, key) in store.RoutineTotal" :key="key" style="font-weight: bold; color: #4556a0;">
             {{ value.key  }} VOLUME : {{ value.value }}
             <ProgressComponent :value="value.value"/>
         </div>
         
-        <div v-for="(value, key) in store.RoutineActivation" :key="key" >
+        <div v-for="(value, key) in store.RoutineActivation" :key="key" style="font-weight: 500;">
             {{ value.key  }} : {{ value.value }} %
             <ProgressComponent :value="value.value"/>
         </div>
