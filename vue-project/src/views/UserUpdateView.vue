@@ -1,14 +1,25 @@
 <script setup>
 import { useUserStore } from '@/stores/useUserStore';
 import {ref} from 'vue'
+import { useRouter } from 'vue-router';
 const userStore = useUserStore();
 const user = userStore.user;
+const router = useRouter();
 const newUser = ref({
     id:user.id,
     password:'',
     name:'',
     address:''
 })
+
+const back = function() {
+    router.replace({name:"mypage"})
+}
+
+const update = function () {
+    console.log("정보?",newUser.value)
+    userStore.userUpdate(newUser.value)
+}
 </script>
 
 <template>
@@ -35,7 +46,7 @@ const newUser = ref({
 
                     <div class="text-center">
                         <button class="btn btn-danger" @click="back">수정취소</button>
-                        <button type="submit" class="btn btn-primary">수정하기</button>
+                        <button type="submit" class="btn btn-primary" @click="update">수정하기</button>
                     </div>
                 </div>
                 </div>

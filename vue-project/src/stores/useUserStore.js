@@ -61,9 +61,19 @@ export const useUserStore = defineStore('user', () => {
 
   //회원수정
   //먼저 로그인 상태가 전제조건
+  const userUpdate = function(info) {
+    console.log("엑시오스오기전의 모습?",info)
+    axios.put(USER_URL+"/userUpdate",info)
+    .then((res)=> {
+      console.log("바뀜?",res)
+      window.alert("회원수정 성공!",res);
+      user.value = res.data;
+      router.replace({name:'mypage'})
+    })
+  }
   
 
   return { 
-    USER_URL,user,login,logout,signup,
+    USER_URL,user,login,logout,signup,userUpdate,
   }
 })
