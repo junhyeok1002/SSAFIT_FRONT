@@ -1,13 +1,12 @@
 <template>
   <div class="header">
-    <div class="logo">
-      <!-- <img src="로고이미지주소" alt="로고" class="logo-img"> -->
-
+    <div class="logo" @click="goToMain">
+      <img src="@/assets/img/Logo.png" alt="로고" class="logo-img">
       <div class="title">SSAFIT</div>
     </div>
     <div v-if="userStore.user !== null" class="userInfo">
-      <div class="user-greeting">반갑습니다, {{ userStore.user.name }} 님</div>
-      <div class="user-buttons">
+      <div class="user-buttons" style="display: block;">
+        <div class="user-greeting">반갑습니다, {{ userStore.user.name }} 님</div>
         <button @click="logout" class="btn btn-outline-primary">로그아웃</button>
         <button @click="mypage" class="btn btn-outline-secondary">마이페이지</button>
       </div>
@@ -38,13 +37,17 @@ export default {
     },
     login() {
       this.$router.push('/login');
+    },
+    goToMain() {
+      console.log("메인 클릭");
+      this.$router.push('/main');
     }
+
   }
 };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Parisienne&display=swap');
 
 .header {
   display: flex;
@@ -60,9 +63,12 @@ export default {
 }
 
 .logo-img {
-  width: 50px; /* 로고 이미지의 크기에 맞게 조절 */
+  width: 50px;
+  /* 로고 이미지의 크기에 맞게 조절 */
   height: auto;
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  margin-top: 0.3rem;
+  margin-left: 1rem;
 }
 
 .logo-text {
@@ -71,6 +77,13 @@ export default {
 
 .user-greeting {
   margin-right: 10px;
+  text-align: right;
+  
+  font-family: "Hahmlet", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  margin-bottom: 0.3rem;
 }
 
 .user-buttons button {
@@ -83,7 +96,15 @@ export default {
   font-weight: bold;
   font-style: normal;
   font-size: 2rem;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
 }
+</style>
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Parisienne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100..900&family=Oswald:wght@200..700&family=Parisienne&display=swap');
+
+* {
+  font-family: "Hahmlet", serif;
+}
 </style>

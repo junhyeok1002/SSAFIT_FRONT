@@ -41,7 +41,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/useUserStore';
 import RoutineChart from '@/components/routine/RoutineChart.vue';
 import FitnessComponent from '@/components/routine/FitnessComponent.vue';
@@ -50,7 +50,6 @@ import FitnessComponent from '@/components/routine/FitnessComponent.vue';
 // finishResult 변수를 ref()로 초기화
 const finishResult = ref('');
 const userStore = useUserStore()
-const route = useRoute();
 
 // 컴포넌트가 마운트된 후 실행되는 함수
 onMounted(() => {
@@ -123,6 +122,6 @@ const goToReview = function() {
         font-weight: bold;
     }
     .button:hover {
-        background-color: #4556a0;
+        background-color: #191d2b;
     }
 </style>
