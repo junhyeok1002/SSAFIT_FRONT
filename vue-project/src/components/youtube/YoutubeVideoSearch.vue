@@ -1,19 +1,10 @@
 <template>
   <div>
-    <input 
-      type="text" 
-      v-model="keyword" 
-      style="width: 80%; height: 2.2rem; padding: 0.5rem;" 
-      placeholder="Youtube 영상을 검색할 수 있습니다." 
-    />
+    <input type="text" v-model="keyword" style="width: 80%; height: 2.2rem; padding: 0.5rem;"
+      placeholder="Youtube 영상을 검색할 수 있습니다." />
     <!-- <button  style="width: 3rem; height: 2rem;"> 검색</button> -->
-    <img 
-      ref="searchButton"
-      @click="search" 
-      src="@/assets/img/Search.png" 
-      alt="Search" 
-      style="width: 2rem; height: 2rem; background-color: white;" 
-    />
+    <img ref="searchButton" @click="search" src="@/assets/img/Search.png" alt="Search"
+      style="width: 2rem; height: 2rem; background-color: white;" />
   </div>
 </template>
 

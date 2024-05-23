@@ -2,7 +2,8 @@
     <div>
         <div style="padding: 0.5rem;">
             <div v-if="store.WorkoutSelect.length > 0">
-                <FitnessWorkoutComponent v-for="fitness in store.WorkoutSelect" :key="fitness.e_name" :fitness="fitness" />
+                <FitnessWorkoutComponent v-for="fitness in store.WorkoutSelect" :key="fitness.e_name"
+                    :fitness="fitness" />
                 <br>
             </div>
         </div>

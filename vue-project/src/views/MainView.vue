@@ -1,13 +1,10 @@
 <script setup>
 import Header from '@/components/Header.vue';
-import MainContent from '@/components/MainContent.vue';
-import Sidebar from '@/components/Sidebar.vue';
 import CarouselComponent from '@/components/CarouselComponent.vue';
 import { useUserStore } from '@/stores/useUserStore';
 import { useReviewStore } from '@/stores/useReviewStore';
 import { useRouter } from 'vue-router';
 import { onMounted } from 'vue'
-import favList from '@/components/routine/favList.vue';
 import RoutineFavComponent from '@/components/routine/RoutineFavComponent.vue';
 import RoutineDoneComponent from '@/components/routine/RoutineDoneComponent.vue';
 
@@ -19,59 +16,52 @@ const userFav = JSON.parse(user.favorite);
 const routineInfo = JSON.parse(user.favorite);
 // userStore.idToName(user.favoriteRoutine);
 
-
 console.log(user.favoriteRoutine[0]);
 const router = useRouter();
 
-
-
-const reviewDetail= function(id) {
-    console.log("딸깍",id);
-    router.push({name:'detail',params:{id:id}});
+const reviewDetail = function (id) {
+  console.log("딸깍", id);
+  router.push({ name: 'detail', params: { id: id } });
 }
 
-const update = function() {
-    router.push({name:'userUpdate'})
+const update = function () {
+  router.push({ name: 'userUpdate' })
 }
 
-const home = function() {
-  router.push({name:'main'})
+const home = function () {
+  router.push({ name: 'main' })
 }
 </script>
 
 <template>
-  <div id="app">
-    <Header />
-    <CarouselComponent />
+  <div>
+    <div id="app">
+      <Header />
+      <CarouselComponent />
 
+      <div style="display: flex; height: 50vh; ">
 
+        <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+          <div id="LeftTitle">
+            즐겨찾기 루틴
+            <hr>
+          </div>
 
+          <RoutineFavComponent v-for="(value, key, index) in user.favoriteRoutine" :key="index" :value="value"
+            :routineId="routineInfo[key]" />
 
-
-
-
-    <div style="display: flex; height: 50vh; ">
-      
-      <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-        <div id="LeftTitle">
-          즐겨찾기 루틴
-          <hr>
         </div>
-      
-        <RoutineFavComponent v-for="(value, key, index) in user.favoriteRoutine" :key="index" :value="value" :routineId="routineInfo[key]" />
+        <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+          <div id="LeftTitle">
+            완료한 루틴
+            <hr>
+          </div>
 
-      </div>
-      <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-        <div id="LeftTitle">
-          완료한 루틴
-          <hr>
+          <RoutineDoneComponent v-for="routine in user.doneRoutine" :key="routine" :routine="routine" />
         </div>
-   
-        <RoutineDoneComponent v-for="routine in user.doneRoutine" :key="routine" :routine="routine" />
       </div>
-    </div>
-  </div>›
-
+    </div>›
+  </div>
 </template>
 
 
@@ -89,14 +79,13 @@ const home = function() {
 }
 
 #LeftTitle {
-    position: sticky;
-    top: 0;
-    background-color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
-    /* margin-top: 1rem; */
-    z-index: 1000;
-    padding-top: 1rem;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  /* margin-top: 1rem; */
+  z-index: 1000;
+  padding-top: 1rem;
 }
 </style>
-

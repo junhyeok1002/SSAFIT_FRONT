@@ -10,13 +10,15 @@
           <div style="width: 100%; margin-bottom: 1.1rem;">
             <!-- <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg"></label> -->
             <div class="col-sm-10" style="width: 100%;">
-              <input type="text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="ID" v-model="username" required>
+              <input type="text" class="form-control form-control-lg" id="colFormLabelLg" placeholder="ID"
+                v-model="username" required>
             </div>
           </div>
           <div style="width: 100%;">
             <!-- <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg"></label> -->
             <div class="col-sm-10" style="width: 100%;">
-              <input type="password" class="form-control form-control-lg" id="colFormLabelLg" placeholder="PASSWORD" v-model="password" required>
+              <input type="password" class="form-control form-control-lg" id="colFormLabelLg" placeholder="PASSWORD"
+                v-model="password" required>
             </div>
           </div>
           <button type="submit" class="btn btn-outline-primary login-button">로그인</button>

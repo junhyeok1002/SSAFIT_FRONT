@@ -1,34 +1,36 @@
 <template>
     <div @click="goToWorkOut(rId)">
-    <div style="display: flex;">
-    <div class="card">
-        <h1 class="card-title">Routine {{ rId }}</h1>
-        <hr>
-        <div
-            style="display: flex; justify-content: space-around; align-items: center; overflow-x: auto; flex-wrap: nowrap; white-space: nowrap;">
-                <img v-for="routineName in routine" :key="routineName" :src="getRoutineImageSrc(routineName)" alt="Routine Image" style="height: 3.5rem;">
-        </div>
+        <div style="display: flex;">
+            <div class="card">
+                <h1 class="card-title">Routine {{ rId }}</h1>
+                <hr>
+                <div
+                    style="display: flex; justify-content: space-around; align-items: center; overflow-x: auto; flex-wrap: nowrap; white-space: nowrap;">
+                    <img v-for="routineName in routine" :key="routineName" :src="getRoutineImageSrc(routineName)"
+                        alt="Routine Image" style="height: 3.5rem;">
+                </div>
 
-    </div>
-    <button style="width: 2.5rem; height: 10rem; border-radius: 10px; margin-right: 1rem;" class="btn btn-outline-primary">완료</button>
-    </div>
+            </div>
+            <button style="width: 2.5rem; height: 10rem; border-radius: 10px; margin-right: 1rem;"
+                class="btn btn-outline-primary">완료</button>
+        </div>
     </div>
 </template>
 
 <script setup>
-import { useRouter,useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useUserStore } from '@/stores/useUserStore';
 import { useMuscleStore } from '@/stores/routine';
 import { defineProps } from 'vue';
 import { onMounted } from 'vue';
-import { ref} from 'vue'
+import { ref } from 'vue'
 
 
 const props = defineProps({
-    routine:{
-    type : Array,
-    required : true
-  }
+    routine: {
+        type: Array,
+        required: true
+    }
 
 });
 
@@ -39,51 +41,51 @@ onMounted(() => {
     // store.getOneRoutine(props.routineId);
 
     function sendRoutineDataToServer(routineData) {
-    // 서버 엔드포인트 URL
-    var endpointUrl = "http://localhost:8080/api-routine/routine";
+        // 서버 엔드포인트 URL
+        var endpointUrl = "http://localhost:8080/api-routine/routine";
 
-    // HTTP POST 요청을 보낼 데이터
-    var requestData = JSON.stringify(routineData);
+        // HTTP POST 요청을 보낼 데이터
+        var requestData = JSON.stringify(routineData);
 
-    // HTTP 요청 설정
-    var requestConfig = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: requestData
-    };
+        // HTTP 요청 설정
+        var requestConfig = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: requestData
+        };
 
-    // HTTP POST 요청 보내기
-    fetch(endpointUrl, requestConfig)
-        .then(function(response) {
-            // 서버 응답을 JSON 형식으로 파싱
-            return response.json();
-        })
-        .then(function(data) {
-            // 서버 응답 처리
-            console.log("서버 응답:", data.id);
-            rId.value = data.id;
+        // HTTP POST 요청 보내기
+        fetch(endpointUrl, requestConfig)
+            .then(function (response) {
+                // 서버 응답을 JSON 형식으로 파싱
+                return response.json();
+            })
+            .then(function (data) {
+                // 서버 응답 처리
+                console.log("서버 응답:", data.id);
+                rId.value = data.id;
 
-            // 여기에서 필요한 추가 작업을 수행할 수 있습니다.
-        })
-        .catch(function(error) {
-            // 오류 처리
-            console.error("오류 발생:", error);
-        });
-}
+                // 여기에서 필요한 추가 작업을 수행할 수 있습니다.
+            })
+            .catch(function (error) {
+                // 오류 처리
+                console.error("오류 발생:", error);
+            });
+    }
 
-// props.routine에 있는 루틴 데이터를 서버로 전송
-sendRoutineDataToServer(props.routine);
-
-
+    // props.routine에 있는 루틴 데이터를 서버로 전송
+    sendRoutineDataToServer(props.routine);
 
 
 
 
 
 
-    
+
+
+
 })
 
 const router = useRouter();
@@ -92,14 +94,14 @@ const userStore = useUserStore();
 const user = userStore.user;
 const routineInfo = JSON.parse(user.favorite);
 const test = routineInfo;
-console.log("뭔가 있긴한가? ",user,routineInfo);
+console.log("뭔가 있긴한가? ", user, routineInfo);
 
 
-const goToWorkOut = function(routineId) {
-    router.push({name:'RoutineDetailView',params:{routineId:routineId}});
-    
+const goToWorkOut = function (routineId) {
+    router.push({ name: 'RoutineDetailView', params: { routineId: routineId } });
+
 }
-const removeRoutine = async function(routineId) {
+const removeRoutine = async function (routineId) {
     await userStore.deleteFav(routineId);
     location.reload();
 }

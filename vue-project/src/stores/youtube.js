@@ -7,8 +7,9 @@ export const useYoutubeStore = defineStore('youtube', () => {
   const selectedVideo = ref(null)
 
 
-  const youtubeSearch = function(keyword){
-    const URL = 'https://www.googleapis.com/youtube/v3/search';
+  const youtubeSearch = function (keyword) {
+    
+    const URL = 'http://localhost:8080/youtube';
     const API_KEY = import.meta.env["VITE_YOUTUBE_KEY"];
 
     axios({
@@ -20,17 +21,17 @@ export const useYoutubeStore = defineStore('youtube', () => {
         maxResults: 10,
         q: keyword,
         type: 'video'
-      }
+      },
     })
-    .then((response)=>{
-      videos.value = response.data.items
-      console.log(response.data)
-    })
-    .catch(()=>{})
+      .then((response) => {
+        videos.value = response.data.items
+        console.log(response.data)
+      })
+      .catch(() => { })
 
   }
 
-  const clickVideo = function(video){
+  const clickVideo = function (video) {
     selectedVideo.value = video
   }
 

@@ -1,42 +1,44 @@
 <template>
-    <Header />
     <div>
-        <!-- <div id="LeftTitle">
+        <Header />
+        <div>
+            <!-- <div id="LeftTitle">
             <h4>운동하기</h4>
             <hr>
         </div> -->
 
-        <div style="display: flex; height: 90vh; ">
-            <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-                <hr>
-                <div class="top-section">
-                    <div id="LeftTitle">
-                        운동 선택지
-                        <hr>
-                    </div>
-                    <!-- {{ store.RoutineDetail }} -->
-                    <div>
-                        <div style="padding: 0.5rem;">
-                            <div v-if="store.WorkoutSelect.length > 0">
-                                <FitnessWorkoutComponent v-for="fitness in store.WorkoutSelect" :key="fitness.e_name"
-                                    :fitness="fitness" />
-                                <br>
+            <div style="display: flex; height: 90vh; ">
+                <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+                    <hr>
+                    <div class="top-section">
+                        <div id="LeftTitle">
+                            운동 선택지
+                            <hr>
+                        </div>
+                        <!-- {{ store.RoutineDetail }} -->
+                        <div>
+                            <div style="padding: 0.5rem;">
+                                <div v-if="store.WorkoutSelect.length > 0">
+                                    <FitnessWorkoutComponent v-for="fitness in store.WorkoutSelect"
+                                        :key="fitness.e_name" :fitness="fitness" />
+                                    <br>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <hr>
-                <div class="bottom-section">
-                    <div id="LeftTitle">
-                        남은 운동들
-                        <hr>
+                    <hr>
+                    <div class="bottom-section">
+                        <div id="LeftTitle">
+                            남은 운동들
+                            <hr>
+                        </div>
+                        <!-- {{ store.RoutineDetail }} -->
+                        <WorkoutLeftComponent />
                     </div>
-                    <!-- {{ store.RoutineDetail }} -->
-                    <WorkoutLeftComponent/>
                 </div>
-            </div>
-            <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-                <YoutubeView />
+                <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+                    <YoutubeView />
+                </div>
             </div>
         </div>
     </div>

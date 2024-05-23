@@ -1,21 +1,23 @@
 <template>
     <div style="display: flex;">
-    <div class="card" @click="goToWorkOut(routineId)">
-        <h1 class="card-title">Routine {{ routineId }}</h1>
-        <hr>
-        <div
-            style="display: flex; justify-content: space-around; align-items: center; overflow-x: auto; flex-wrap: nowrap; white-space: nowrap;">
-                <img v-for="routineName in value" :key="routineName" :src="getRoutineImageSrc(routineName)" alt="Routine Image" style="height: 3.5rem;">
-                
-        </div>
+        <div class="card" @click="goToWorkOut(routineId)">
+            <h1 class="card-title">Routine {{ routineId }}</h1>
+            <hr>
+            <div
+                style="display: flex; justify-content: space-around; align-items: center; overflow-x: auto; flex-wrap: nowrap; white-space: nowrap;">
+                <img v-for="routineName in value" :key="routineName" :src="getRoutineImageSrc(routineName)"
+                    alt="Routine Image" style="height: 3.5rem;">
 
-    </div>
-    <button style="width: 2.5rem; height: 10rem; border-radius: 10px; margin-right: 1rem;" class="btn btn-outline-danger" @click="removeRoutine(routineId)">삭제</button>
+            </div>
+
+        </div>
+        <button style="width: 2.5rem; height: 10rem; border-radius: 10px; margin-right: 1rem;"
+            class="btn btn-outline-danger" @click="removeRoutine(routineId)">삭제</button>
     </div>
 </template>
 
 <script setup>
-import { useRouter,useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useUserStore } from '@/stores/useUserStore';
 import { useMuscleStore } from '@/stores/routine';
 import { defineProps } from 'vue';
@@ -23,18 +25,18 @@ import { onMounted } from 'vue';
 
 
 const props = defineProps({
-  routineId: {
-    type: Number, // 혹은 String, 필요에 따라 타입을 지정하세요
-    required: true
-  }, 
-  key:{
-    type : String,
-    required : true
-  },
-  value:{
-    type : Array,
-    required : true
-  }
+    routineId: {
+        type: Number, // 혹은 String, 필요에 따라 타입을 지정하세요
+        required: true
+    },
+    key: {
+        type: String,
+        required: true
+    },
+    value: {
+        type: Array,
+        required: true
+    }
 
 });
 
@@ -50,14 +52,14 @@ const userStore = useUserStore();
 const user = userStore.user;
 const routineInfo = JSON.parse(user.favorite);
 const test = routineInfo;
-console.log("뭔가 있긴한가? ",user,routineInfo);
+console.log("뭔가 있긴한가? ", user, routineInfo);
 
 
-const goToWorkOut = function(routineId) {
-    router.push({name:'RoutineDetailView',params:{routineId:routineId}});
-    
+const goToWorkOut = function (routineId) {
+    router.push({ name: 'RoutineDetailView', params: { routineId: routineId } });
+
 }
-const removeRoutine = async function(routineId) {
+const removeRoutine = async function (routineId) {
     await userStore.deleteFav(routineId);
     location.reload();
 }

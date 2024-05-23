@@ -1,12 +1,12 @@
 <template>
-  <div >
-    <img src="@/assets/img/Youtube.png" alt="Youtube" style="width: 10rem; margin-top: 2rem; margin-bottom: 2rem;"  />
-    <br/><br/>
-    <YoutubeVideoSearch/>
-    
-    <YoutubeVideoDetail/>
+  <div>
+    <img src="@/assets/img/Youtube.png" alt="Youtube" style="width: 10rem; margin-top: 2rem; margin-bottom: 2rem;" />
+    <br /><br />
+    <YoutubeVideoSearch />
 
-    <YoutubeVideoList/>
+    <YoutubeVideoDetail />
+
+    <YoutubeVideoList />
   </div>
 </template>
 

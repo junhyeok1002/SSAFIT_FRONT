@@ -7,95 +7,95 @@ import axios from 'axios'
 const REST_BOARD_API = `http://localhost:8080/api-routine`
 
 export const useMuscleStore = defineStore('muscle', () => {
-  
+
   const MuscleList = ref([])
   const getMuscleList = function () {
     axios.get(`${REST_BOARD_API}/muscle`)
       .then((response) => {
         MuscleList.value = response.data;
-    })
+      })
   }
 
   const FitnessListAgonist = ref([])
   const getFitnessListAgonist = function () {
     const dynamicSegment = useRoute().params.muscleId;
-    console.log("여기는 루틴 저장소의 아이디 가져오기",dynamicSegment);
+    console.log("여기는 루틴 저장소의 아이디 가져오기", dynamicSegment);
     axios.get(`${REST_BOARD_API}/fitness/agonist/${dynamicSegment}`)
       .then((response) => {
         console.log(response.data);
         FitnessListAgonist.value = response.data;
         // console.log(dynamicSegment);
         console.log(FitnessListAgonist.value);
-    })
+      })
   }
 
   const FitnessListSynergy1 = ref([])
   const getFitnessListSynergy1 = function () {
     const dynamicSegment = useRoute().params.muscleId;
-    console.log("여기는 루틴 저장소의 아이디 가져오기",dynamicSegment);
+    console.log("여기는 루틴 저장소의 아이디 가져오기", dynamicSegment);
     axios.get(`${REST_BOARD_API}/fitness/synergyfirst/${dynamicSegment}`)
       .then((response) => {
         console.log(response.data);
         FitnessListSynergy1.value = response.data;
         // console.log(dynamicSegment);
         console.log(FitnessListSynergy1.value);
-    })
+      })
   }
 
   const FitnessListSynergy2 = ref([])
   const getFitnessListSynergy2 = function () {
     const dynamicSegment = useRoute().params.muscleId;
-    console.log("여기는 루틴 저장소의 아이디 가져오기",dynamicSegment);
+    console.log("여기는 루틴 저장소의 아이디 가져오기", dynamicSegment);
     axios.get(`${REST_BOARD_API}/fitness/synergysecond/${dynamicSegment}`)
       .then((response) => {
         console.log(response.data);
         FitnessListSynergy2.value = response.data;
         console.log(FitnessListSynergy2.value);
-    })
+      })
   }
 
 
   //루틴 아이디로 루틴정보 가져오기
   const routine = ref([]);
-  const getOneRoutine = async function(id) {
-    console.log("URL",REST_BOARD_API+"/routine/"+id);
-    await axios.get(REST_BOARD_API+"/routine/"+id)
-    .then((res)=> {
-      routine.value = res.data.routine;
-      console.log("루틴 아이디로 가져와!",id,res.data.routine);
-    })
+  const getOneRoutine = async function (id) {
+    console.log("URL", REST_BOARD_API + "/routine/" + id);
+    await axios.get(REST_BOARD_API + "/routine/" + id)
+      .then((res) => {
+        routine.value = res.data.routine;
+        console.log("루틴 아이디로 가져와!", id, res.data.routine);
+      })
   }
   const OneFitness = ref([])
   const getOneFitness = function () {
-      // const route = useRoute();
-      const dynamicSegment = useRoute().params.fitnessId;
-      console.log("여기는 루틴 저장소의 아이디 가져오기",dynamicSegment);
-      axios.get(`${REST_BOARD_API}/fitness/${dynamicSegment}`)
-        .then((response) => {
-          console.log("response: " + response.data);
-          OneFitness.value = response.data;
-          // FitnessListAgonist.value = response.data;
-          // console.log(dynamicSegment);
-          // console.log(FitnessListAgonist);
+    // const route = useRoute();
+    const dynamicSegment = useRoute().params.fitnessId;
+    console.log("여기는 루틴 저장소의 아이디 가져오기", dynamicSegment);
+    axios.get(`${REST_BOARD_API}/fitness/${dynamicSegment}`)
+      .then((response) => {
+        console.log("response: " + response.data);
+        OneFitness.value = response.data;
+        // FitnessListAgonist.value = response.data;
+        // console.log(dynamicSegment);
+        // console.log(FitnessListAgonist);
       })
-    }
+  }
 
   const sendRoutine = async () => {
-      try {
-          const response = await axios.post(`${REST_BOARD_API}/routine`, allENames);
-          console.log(response.data); // 서버로부터 받은 응답 데이터
-      } catch (error) {
-          console.error(error); // 오류 처리
-      }
+    try {
+      const response = await axios.post(`${REST_BOARD_API}/routine`, allENames);
+      console.log(response.data); // 서버로부터 받은 응답 데이터
+    } catch (error) {
+      console.error(error); // 오류 처리
+    }
   };
-  
+
   const RoutineDetail = ref([])
   const getRoutineDetail = function () {
     const dynamicSegment = useRoute().params.routineId;
     axios.get(`${REST_BOARD_API}/fitness/routine/${dynamicSegment}`)
       .then((response) => {
         RoutineDetail.value = response.data;
-    })
+      })
   }
 
   const RoutineTotal = ref([]);
@@ -124,7 +124,7 @@ export const useMuscleStore = defineStore('muscle', () => {
         RoutineActivation.value.sort((a, b) => b.value - a.value);
       });
   };
-  
+
 
   const RoutineFitnessDetail = ref([])
   const getRoutineFitnessDetail = function () {
@@ -132,7 +132,7 @@ export const useMuscleStore = defineStore('muscle', () => {
     axios.get(`${REST_BOARD_API}/fitness/routine/detail/${dynamicSegment}`)
       .then((response) => {
         RoutineFitnessDetail.value = response.data;
-    })
+      })
   }
 
   const WorkoutSelect = ref([]);
@@ -141,7 +141,7 @@ export const useMuscleStore = defineStore('muscle', () => {
     // WorkoutSelect와 WorkoutRemain이 비어 있는지 확인
     if (WorkoutSelect.value.length === 0 && WorkoutRemain.value.length === 0) {
       console.log("시작됐네");
-      
+
       const dynamicSegment = useRoute().params.routineId;
       axios.get(`${REST_BOARD_API}/fitness/workout/${dynamicSegment}`)
         .then((response) => {
@@ -153,35 +153,35 @@ export const useMuscleStore = defineStore('muscle', () => {
         });
     }
   };
-  
+
   const finishResult = ref([]);
   const getWorkoutSelectNext = function (rId, fId) {
     axios.get(`${REST_BOARD_API}/fitness/workout/${rId}/${fId}`)
       .then((response) => {
         if (response.data && response.data.selection && response.data.remain) {
-            WorkoutSelect.value = response.data.selection;
-            WorkoutRemain.value = response.data.remain;
-        }else{
-            finishResult.value = response.data;
-            console.log(finishResult.value);
-            localStorage.setItem('finishResult', JSON.stringify(response.data));
+          WorkoutSelect.value = response.data.selection;
+          WorkoutRemain.value = response.data.remain;
+        } else {
+          finishResult.value = response.data;
+          console.log(finishResult.value);
+          localStorage.setItem('finishResult', JSON.stringify(response.data));
 
-            window.location.href = `/workout/finish/${rId}`;
+          window.location.href = `/workout/finish/${rId}`;
         }
-    })
+      })
   }
 
-  return { 
-           MuscleList, getMuscleList,
-           FitnessListAgonist, getFitnessListAgonist,
-           routine, getOneRoutine,
-           OneFitness, getOneFitness,
-           sendRoutine,
-           FitnessListSynergy1, getFitnessListSynergy1,
-           FitnessListSynergy2, getFitnessListSynergy2,
-           RoutineDetail, getRoutineDetail,
-           RoutineFitnessDetail, getRoutineFitnessDetail,
-           RoutineTotal, RoutineActivation, getRoutineActivation,
-           WorkoutSelect, WorkoutRemain, getWorkoutSelectInit, getWorkoutSelectNext
-         }
+  return {
+    MuscleList, getMuscleList,
+    FitnessListAgonist, getFitnessListAgonist,
+    routine, getOneRoutine,
+    OneFitness, getOneFitness,
+    sendRoutine,
+    FitnessListSynergy1, getFitnessListSynergy1,
+    FitnessListSynergy2, getFitnessListSynergy2,
+    RoutineDetail, getRoutineDetail,
+    RoutineFitnessDetail, getRoutineFitnessDetail,
+    RoutineTotal, RoutineActivation, getRoutineActivation,
+    WorkoutSelect, WorkoutRemain, getWorkoutSelectInit, getWorkoutSelectNext
+  }
 })

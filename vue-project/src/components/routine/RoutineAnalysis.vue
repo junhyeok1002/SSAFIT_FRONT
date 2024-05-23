@@ -1,13 +1,14 @@
 <template>
     <div>
         <div id="LeftTitle">
-        <h4>루틴 상세</h4>
-        <hr>
+            <h4>루틴 상세</h4>
+            <hr>
         </div>
 
         <div style="padding: 0.5rem;">
             <div v-if="store.RoutineFitnessDetail.length > 0">
-                <FitnessComponent v-for="fitness in store.RoutineFitnessDetail" :key="fitness.e_name" :fitness="fitness" />
+                <FitnessComponent v-for="fitness in store.RoutineFitnessDetail" :key="fitness.e_name"
+                    :fitness="fitness" />
                 <br>
             </div>
         </div>
@@ -29,10 +30,9 @@ onMounted(() => {
 </script>
 
 <style scoped>
-    #LeftTitle {
-        position: sticky;
-        top: 0;
-        background-color: white;
-    }
-
+#LeftTitle {
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
 </style>

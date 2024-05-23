@@ -106,14 +106,16 @@ export default {
   border-radius: 8px;
   padding: 8px;
   color: white;
-  text-align: left; /* 유저 메시지도 좌측 정렬로 */
+  text-align: left;
+  /* 유저 메시지도 좌측 정렬로 */
 }
 
 .bot-message {
   background-color: #f0f0f0;
   border-radius: 8px;
   padding: 8px;
-  text-align: left; /* 봇 메시지를 좌측 정렬로 */
+  text-align: left;
+  /* 봇 메시지를 좌측 정렬로 */
 }
 
 .chat-input {

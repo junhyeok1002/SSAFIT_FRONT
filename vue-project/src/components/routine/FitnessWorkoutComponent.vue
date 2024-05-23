@@ -1,10 +1,7 @@
 <template>
   <div>
-    <RouterLink
-      :to="{ name: 'workoutselct', params: { fitnessId: fitness.e_name } }"
-      @click.native="reloadPage"
-      style="color: black; text-decoration: none;"
-    >
+    <RouterLink :to="{ name: 'workoutselct', params: { fitnessId: fitness.e_name } }" @click.native="reloadPage"
+      style="color: black; text-decoration: none;">
       <div class="fitness-box">
         <!-- <img src="@/assets/img/muscle/Dumbbell_Curl.png" alt="Dumbbell_Curl" style="width: 100%; height: 100%;"> -->
         <p style="margin-bottom: 0;">{{ fitness.e_name }}<br>({{ fitness.name }})</p>

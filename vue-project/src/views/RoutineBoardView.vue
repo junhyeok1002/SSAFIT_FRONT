@@ -254,6 +254,4 @@ button.mr-1 {
 select option[value=""][disabled] {
   display: none;
 }
-
-
 </style>

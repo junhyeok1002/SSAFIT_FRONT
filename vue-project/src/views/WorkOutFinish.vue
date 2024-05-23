@@ -1,40 +1,42 @@
 <template>
-  <Header />
   <div>
-    <div id="LeftTitle">
-      <h4>운동 완료</h4>
-      <hr>
-    </div>
+    <Header />
+    <div>
+      <div id="LeftTitle">
+        <h4>운동 완료</h4>
+        <hr>
+      </div>
 
-    <div class="link-container" style="margin-bottom: 1rem;">
-      <div class="link-item">
-        <div class="button" @click="addToFavorites">즐겨찾기 등록</div>
-      </div>
-      <div class="link-item">
-        <div class="button" @click="goToHome">홈으로</div>
-      </div>
-      <div class="link-item">
-        <div class="button" @click="goToReview">후기 작성</div>
-      </div>
-    </div>
-
-    <div style="display: flex; height: 70vh; ">
-      <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-        <div id="LeftTitle">
-          선택한 운동 순서
-          <hr>
+      <div class="link-container" style="margin-bottom: 1rem;">
+        <div class="link-item">
+          <div class="button" @click="addToFavorites">즐겨찾기 등록</div>
         </div>
+        <div class="link-item">
+          <div class="button" @click="goToHome">홈으로</div>
+        </div>
+        <div class="link-item">
+          <div class="button" @click="goToReview">후기 작성</div>
+        </div>
+      </div>
 
-        <div style="padding: 0.5rem;">
-          <div v-if="finishResult.length > 0">
-            <FitnessComponent v-for="fitness in finishResult" :key="fitness.e_name" :fitness="fitness" />
-            <br>
+      <div style="display: flex; height: 70vh; ">
+        <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+          <div id="LeftTitle">
+            선택한 운동 순서
+            <hr>
           </div>
-        </div>
 
-      </div>
-      <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-        <RoutineChart />
+          <div style="padding: 0.5rem;">
+            <div v-if="finishResult.length > 0">
+              <FitnessComponent v-for="fitness in finishResult" :key="fitness.e_name" :fitness="fitness" />
+              <br>
+            </div>
+          </div>
+
+        </div>
+        <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+          <RoutineChart />
+        </div>
       </div>
     </div>
   </div>
@@ -70,16 +72,16 @@ onMounted(() => {
 
 const router = useRouter();
 
-const addToFavorites = function() {
-    userStore.registFavorite();
+const addToFavorites = function () {
+  userStore.registFavorite();
 }
 
-const goToHome = function() {
-    router.push({name:'main'});
+const goToHome = function () {
+  router.push({ name: 'main' });
 }
 
-const goToReview = function() {
-  router.push({name:'createReview',params:{routineId:route.params.routineId}});
+const goToReview = function () {
+  router.push({ name: 'createReview', params: { routineId: route.params.routineId } });
 }
 
 </script>
@@ -105,30 +107,32 @@ const goToReview = function() {
 }
 
 .link-container {
-        display: flex;
-        width: 50%;
-        margin: 0 auto;
-    }
-    .link-item {
-        flex: 1;
-        text-align: center;
-    }
+  display: flex;
+  width: 50%;
+  margin: 0 auto;
+}
 
-    .button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #9dbfd3;
-        color: white;
-        text-align: center;
-        text-decoration: none;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        width: 99%;
-        font-weight: bold;
-    }
-    .button:hover {
-        background-color: #4556a0;
-    }
+.link-item {
+  flex: 1;
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #9dbfd3;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 99%;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #4556a0;
+}
 </style>

@@ -4,7 +4,7 @@
 
             <h4>운동 상세</h4>
             <hr>
-         
+
         </div>
 
         <div id="detail" style="display: flex; padding :0px;">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <br>
-                <div style="color: gray; text-align: center;"> 
+                <div style="color: gray; text-align: center;">
                     사진을 클릭하면 장바구니에 담을 수 있습니다
                 </div>
 

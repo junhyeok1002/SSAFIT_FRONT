@@ -43,22 +43,26 @@ export default {
 }
 
 .info-left {
-  width: 90%; /* 삭제 버튼을 제외한 왼쪽 영역의 너비 */
+  width: 90%;
+  /* 삭제 버튼을 제외한 왼쪽 영역의 너비 */
 }
 
 .info-right {
-  width: 1.5rem; /* 삭제 버튼의 너비 */
+  width: 1.5rem;
+  /* 삭제 버튼의 너비 */
 }
 
 .info-right button {
-  width: 100%; /* 삭제 버튼이 전체 너비를 차지하도록 설정 */
+  width: 100%;
+  /* 삭제 버튼이 전체 너비를 차지하도록 설정 */
 }
 
 .fitness-box p {
-  margin: 0; /* 단락의 margin을 제거하여 여백 없이 표시 */
+  margin: 0;
+  /* 단락의 margin을 제거하여 여백 없이 표시 */
 }
 
-.buttonD{
+.buttonD {
   color: white;
   background-color: #dd4242;
   border: 0;

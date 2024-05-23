@@ -4,7 +4,6 @@ import { useReviewStore } from '@/stores/useReviewStore';
 import { useRouter } from 'vue-router';
 import { onMounted } from 'vue'
 import Header from '@/components/Header.vue';
-import favList from '@/components/routine/favList.vue'
 import RoutineFavComponent from '@/components/routine/RoutineFavComponent.vue';
 import RoutineDoneComponent from '@/components/routine/RoutineDoneComponent.vue';
 
@@ -35,67 +34,63 @@ const home = function () {
 </script>
 
 <template>
-  <Header />
-  <div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <div id="Header1">{{ user.name }}님의 마이페이지</div>
-      <!-- <div>
+  <div>
+    <Header />
+    <div class="container mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div id="Header1">{{ user.name }}님의 마이페이지</div>
+        <!-- <div>
           <button class="btn btn-primary" @click="update">수정하기</button>
         </div> -->
+      </div>
+      <hr>
+
+      <div style="display: flex; height: 78vh; ">
+
+        <div style="width: 33%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+          <div id="LeftTitle">
+            즐겨찾기 루틴
+            <hr>
+          </div>
+
+          <RoutineFavComponent v-for="(value, key, index) in user.favoriteRoutine" :key="index" :value="value"
+            :routineId="routineInfo[key]" />
+
+        </div>
+        <div style="width: 33%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+          <div id="LeftTitle">
+            완료한 루틴
+            <hr>
+          </div>
+
+          <RoutineDoneComponent v-for="routine in user.doneRoutine" :key="routine" :routine="routine" />
+        </div>
+        <div style="width: 33%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+          <div id="LeftTitle">
+            작성한 게시글
+            <hr>
+          </div>
+
+          <div v-for="(value, index) in userStore.userList" :key="index">
+            <button style="width: 100%;" v-if="value.title.length > 4" class="btn btn-outline-secondary mb-2"
+              @click="reviewDetail(value.reviewId)">
+              제목 : {{ value.title.substring(0, 10) }}.. <br>
+              작성자 : {{ value.userName }} <br>
+              작성일자 : {{ value.createTime }} <br>
+              조회수 : {{ value.viewCnt }}
+            </button>
+
+            <button v-else style="width: 100%;" class="btn btn-outline-secondary mb-2"
+              @click="reviewDetail(value.reviewId)">
+              제목 : {{ value.title }} <br>
+              작성자 : {{ value.userName }} <br>
+              작성일자 : {{ value.createTime }} <br>
+              조회수 : {{ value.viewCnt }}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <hr>
-
-    <div style="display: flex; height: 78vh; ">
-
-      <div style="width: 33%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-        <div id="LeftTitle">
-          즐겨찾기 루틴
-          <hr>
-        </div>
-
-        <RoutineFavComponent v-for="(value, key, index) in user.favoriteRoutine" :key="index" :value="value"
-          :routineId="routineInfo[key]" />
-
-      </div>
-      <div style="width: 33%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-        <div id="LeftTitle">
-          완료한 루틴
-          <hr>
-        </div>
-
-        <RoutineDoneComponent v-for="routine in user.doneRoutine" :key="routine" :routine="routine" />
-      </div>
-      <div style="width: 33%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-        <div id="LeftTitle">
-          작성한 게시글
-          <hr>
-        </div>
-
-        <div v-for="(value, index) in userStore.userList" :key="index">
-          <button style="width: 100%;" v-if="value.title.length > 4" class="btn btn-outline-secondary mb-2"
-            @click="reviewDetail(value.reviewId)">
-            제목 : {{ value.title.substring(0, 10) }}.. <br>
-            작성자 : {{ value.userName }} <br>
-            작성일자 : {{ value.createTime }} <br>
-            조회수 : {{ value.viewCnt }}
-          </button>
-          
-          <button v-else style="width: 100%;" class="btn btn-outline-secondary mb-2"
-            @click="reviewDetail(value.reviewId)">
-            제목 : {{ value.title }} <br> 
-            작성자 : {{ value.userName }} <br>
-            작성일자 : {{ value.createTime }} <br>
-            조회수 : {{ value.viewCnt }}
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-
-
-
-
   </div>
 </template>
 

@@ -4,23 +4,26 @@
 
             <h4>운동 API</h4>
             <hr>
-    
+
         </div>
 
         <div id="detail" style="display: flex; padding :10px; padding-top: 0px;">
             <div id="detailLeft" style="width: 100%; max-height: 100%; overflow-y: scroll; padding: 0px;">
                 <div class="link-container">
                     <div class="link-item">
-                        <RouterLink :to="{ name: 'create', params: { fitnessId: $route.params.fitnessId } }" class="button">Select Menu</RouterLink>
+                        <RouterLink :to="{ name: 'create', params: { fitnessId: $route.params.fitnessId } }"
+                            class="button">Select Menu</RouterLink>
                     </div>
                     <div class="link-item">
-                        <RouterLink :to="{ name: 'youtube', params: { fitnessId: $route.params.fitnessId } }" class="button">YouTube</RouterLink>
+                        <RouterLink :to="{ name: 'youtube', params: { fitnessId: $route.params.fitnessId } }"
+                            class="button">YouTube</RouterLink>
                     </div>
                     <div class="link-item">
-                        <RouterLink :to="{ name: 'chatgpt', params: { fitnessId: $route.params.fitnessId } }" class="button">ChatGPT</RouterLink>
+                        <RouterLink :to="{ name: 'chatgpt', params: { fitnessId: $route.params.fitnessId } }"
+                            class="button">ChatGPT</RouterLink>
                     </div>
                 </div>
-                
+
                 <div>
                     <RouterView></RouterView>
                 </div>
@@ -128,29 +131,32 @@ td {
     font-weight: bold;
 }
 
-    .link-container {
-        display: flex;
-        width: 100%;
-    }
-    .link-item {
-        flex: 1;
-        text-align: center;
-    }
-    .button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #9dbfd3;
-        color: white;
-        text-align: center;
-        text-decoration: none;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        width: 99%;
-        font-weight: bold;
-    }
-    .button:hover {
-        background-color: #4556a0;
-    }
+.link-container {
+    display: flex;
+    width: 100%;
+}
+
+.link-item {
+    flex: 1;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #9dbfd3;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 99%;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #4556a0;
+}
 </style>

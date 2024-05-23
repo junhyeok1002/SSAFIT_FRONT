@@ -7,8 +7,8 @@
     <div style="display: flex;">
       <div @click="goToHome" class="link">홈으로</div>
       <div @click="goToCreateRoutine" class="link">루틴 만들기</div>
-      <div @click="goToRoutineBoard"  class="link">루틴 게시판</div>
-      <div @click="goToRoutineMyPage"  class="link">마이 페이지</div>
+      <div @click="goToRoutineBoard" class="link">루틴 게시판</div>
+      <div @click="goToRoutineMyPage" class="link">마이 페이지</div>
     </div>
     <div class="user-info">
       <div v-if="userStore.user !== null" class="user-buttons" style="display: block;">
@@ -58,11 +58,11 @@ export default {
     },
     goToRoutineBoard() {
       this.$router.push('/board');
-    },goToRoutineMyPage(){
+    }, goToRoutineMyPage() {
       this.$router.push('/mypage');
     },
     update() {
-        this.$router.push('/userUpdate');
+      this.$router.push('/userUpdate');
     }
   }
 };
@@ -83,13 +83,13 @@ export default {
   align-items: center;
 }
 
-.link{
+.link {
   margin-right: 5rem;
   margin-left: 5rem;
   font-weight: bold;
 }
 
-.link:hover{
+.link:hover {
   color: #4556a0;
   /* // #9dbfd3, #4556a0 */
 }
@@ -111,7 +111,7 @@ export default {
 .user-greeting {
   margin-right: 10px;
   text-align: right;
-  
+
   font-family: "Hahmlet", serif;
   font-optical-sizing: auto;
   font-weight: 600;
@@ -146,4 +146,3 @@ export default {
   text-align: center;
 }
 </style>
-

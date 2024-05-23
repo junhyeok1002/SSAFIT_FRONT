@@ -1,32 +1,33 @@
 <template>
-    <Header />
     <div>
+        <Header />
         <div>
-            <div id="Header1">루틴 디테일</div>
-        </div>
+            <div>
+                <div id="Header1">루틴 디테일</div>
+            </div>
 
-        <div class="link-container">
-            <div class="link-item">
-                <div class="button" @click="addToFavorites">즐겨찾기 등록</div>
+            <div class="link-container">
+                <div class="link-item">
+                    <div class="button" @click="addToFavorites">즐겨찾기 등록</div>
+                </div>
+                <div class="link-item">
+                    <div class="button" @click="goToHome">홈으로</div>
+                </div>
+                <div class="link-item">
+                    <div class="button" @click="startExercise">운동하기</div>
+                </div>
             </div>
-            <div class="link-item">
-                <div class="button" @click="goToHome">홈으로</div>
-            </div>
-            <div class="link-item">
-                <div class="button" @click="startExercise">운동하기</div>
+            <br>
+
+            <div style="display: flex; height: 75vh; ">
+                <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+                    <RoutineAnalysis />
+                </div>
+                <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
+                    <RoutineChart />
+                </div>
             </div>
         </div>
-        <br>
-
-        <div style="display: flex; height: 75vh; ">
-            <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-                <RoutineAnalysis />
-            </div>
-            <div style="width: 50%; max-height: 100%; overflow-y: scroll; padding: 0px;">
-                <RoutineChart />
-            </div>
-        </div>
-
     </div>
 </template>
 <script setup>
@@ -94,10 +95,10 @@ const startExercise = function () {
     background-color: #4556a0;
 }
 
-#Header1{
-		font-weight: bold;
-		font-size: 1.5rem;
-		margin-top: 1rem;
-        margin-bottom: 1rem;
-	}
+#Header1 {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 </style>

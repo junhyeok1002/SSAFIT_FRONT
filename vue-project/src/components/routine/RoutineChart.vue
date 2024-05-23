@@ -1,19 +1,19 @@
 <template>
     <div>
         <div id="LeftTitle">
-        루틴 분석
-        <hr>
+            루틴 분석
+            <hr>
         </div>
 
         <!-- {{ store.RoutineDetail.activation.TOTAL }} -->
         <div v-for="(value, key) in store.RoutineTotal" :key="key" style="font-weight: bold; color: #4556a0;">
-            {{ value.key  }} VOLUME : {{ value.value }}
-            <ProgressComponent :value="value.value"/>
+            {{ value.key }} VOLUME : {{ value.value }}
+            <ProgressComponent :value="value.value" />
         </div>
-        
+
         <div v-for="(value, key) in store.RoutineActivation" :key="key" style="font-weight: 500;">
-            {{ value.key  }} : {{ value.value }} %
-            <ProgressComponent :value="value.value"/>
+            {{ value.key }} : {{ value.value }} %
+            <ProgressComponent :value="value.value" />
         </div>
     </div>
 </template>
@@ -35,12 +35,10 @@ onMounted(() => {
 
 <style scoped>
 #LeftTitle {
-  position: sticky;
-  top: 0;
-  background-color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
-
-
 </style>
