@@ -82,23 +82,24 @@ const addRoutine = function (routineId) {
     <Header />
     <div class="container mt-4 board">
       <h1 class="text-center mb-4">루틴 게시판</h1>
-
-      <div class="box mb-4" style="display: flex;">
-        <select v-model="selected.reviewRoutineId">
-          <option disabled value="">루틴선택</option>
-          <!-- <option value="" selected>루틴선택</option> -->
-          <option v-for="i in 3" :key="i">{{ i }}</option>
-        </select>
-        <select v-model="selected.reviewDirection">
-          <option disabled value="">조회수</option>
-          <option>오름차순</option>
-          <option>내림차순</option>
-        </select>
-        <input v-model="selected.reviewTitle" placeholder="제목" class="form-control mb-2">
-        <input v-model="selected.reviewAuthorName" placeholder="작성자명" class="form-control mb-2">
-        <button @click="search" class="button">검색</button>
+      <div class="card" style="height: auto;">
+        <div class="box" style="display: flex;">
+          <select v-model="selected.reviewRoutineId">
+            <option selected disabled :value="0">루틴선택</option>
+            <!-- <option value="" selected>루틴선택</option> -->
+            <option v-for="i in 3" :key="i"> {{ i }}</option>
+          </select>
+          <select v-model="selected.reviewDirection">
+            <option selected disabled :value="null">조회수</option>
+            <option>오름차순</option>
+            <option>내림차순</option>
+          </select>
+          <input v-model="selected.reviewTitle" placeholder="제목" class="form-control mb-2">
+          <input v-model="selected.reviewAuthorName" placeholder="작성자명" class="form-control mb-2">
+          <button @click="search" class="button">검색</button>
+        </div>
       </div>
-      
+
     </div>
 
 
@@ -205,13 +206,15 @@ button.mr-1 {
   border: 2px solid #ccc;
   border-radius: 15px;
   padding: 20px;
-  padding-top: 0.9rem;
+  padding-top: 20px;
   width: 100%;
   margin: 0 auto;
   margin-right: 0.3rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   height: 10rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 12px;
 }
 
 .card-title {
@@ -234,10 +237,10 @@ button.mr-1 {
   cursor: pointer;
   transition: background-color 0.3s;
   width: 99%;
-  font-weight: bold;  
+  font-weight: bold;
 }
 
-.button.button{
+.button.button {
   margin-top: 0rem;
   height: 38px;
   padding: 5px 20px;
@@ -247,4 +250,10 @@ button.mr-1 {
 .button:hover {
   background-color: #4556a0;
 }
+
+select option[value=""][disabled] {
+  display: none;
+}
+
+
 </style>
