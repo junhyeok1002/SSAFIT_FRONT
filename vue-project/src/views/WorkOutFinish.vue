@@ -129,6 +129,6 @@ const goToReview = function() {
         font-weight: bold;
     }
     .button:hover {
-        background-color: #191d2b;
+        background-color: #4556a0;
     }
 </style>
